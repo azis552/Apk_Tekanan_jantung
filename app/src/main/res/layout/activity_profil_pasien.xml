@@ -1,0 +1,277 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/walpaper"
+    android:padding="16dp">
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:background="@drawable/rounded_border"
+        >
+
+        <!-- Bagian Header -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/identitaspasien"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true"
+            android:scaleType="fitStart"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="-40dp"
+            android:text="Identitas Test"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Formulir -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama"
+            android:id="@+id/et_nama"
+            android:inputType="textPersonName" />
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="left">
+
+            <TextView
+                android:id="@+id/tv_tanggallahir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Lahir"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_tgllahir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:text="Pilih Tanggal Lahir" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenis Kelamin"
+            android:textStyle="bold" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rg_jeniskelamin"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/lakilaki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laki-Laki" />
+
+            <RadioButton
+                android:id="@+id/perempuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perempuan" />
+        </RadioGroup>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Alamat"
+            android:id="@+id/alamat"
+            android:inputType="textMultiLine" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/indikasirehab"
+            android:hint="Indikasi Rehab" />
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="left">
+
+            <TextView
+                android:id="@+id/tv_tanggalperiksa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Periksa"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_tglperiksa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Pilih Tanggal Periksa" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rekammedis"
+            android:hint="No. Rekam Medis" />
+
+        <!-- Faktor Resiko -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Faktor Resiko"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/diabetes"
+                android:text="Diabetes" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hipertensi"
+                android:text="Hipertensi" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/displidemia"
+                android:text="Dislipidemia" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/perokok"
+                android:text="Perokok" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/riwayatkeluarga"
+                android:text="Riwayat Keluarga" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lainlain"
+                android:text="Lain-lain" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tx_lain"/>
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/keluhan"
+            android:hint="Keluhan Saat Ini" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ed_riwayatkeluarga"
+            android:hint="Riwayat Keluarga" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ed_riwayatsekarang"
+            android:hint="Riwayat Sekarang" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/riwayatpengobatan"
+            android:hint="Riwayat Pengobatan" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tinggi Badan (cm)"
+            android:id="@+id/tinggibadan"
+            android:inputType="number" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Berat Badan (kg)"
+            android:id="@+id/beratbadan"
+            android:inputType="number" />
+
+        <!-- Metode Test -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Metode Test"
+            android:textStyle="bold"
+            />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_six_minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Six Minute Walking Test" />
+
+            <RadioButton
+                android:id="@+id/rb_treadmill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treadmill Test Metode" />
+        </RadioGroup>
+
+        <!-- Tombol -->
+        <Button
+            android:layout_width="200dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSelanjutnya"
+            android:text="Selanjutnya"
+            android:backgroundTint="@color/primary"
+            android:layout_marginBottom="30dp"
+            />
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome back, Guest"
+            android:textSize="20sp"
+            android:layout_marginTop="24dp"
+            android:layout_centerInParent="true"/>
+    </LinearLayout>
+</ScrollView>
