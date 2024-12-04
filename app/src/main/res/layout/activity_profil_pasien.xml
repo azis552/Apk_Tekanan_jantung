@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
         android:background="@drawable/rounded_border"
         >
 
@@ -77,6 +76,7 @@
                 android:id="@+id/lakilaki"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="Laki-Laki" />
 
             <RadioButton
@@ -240,11 +240,13 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/rg_metodetest"
             android:orientation="vertical">
 
             <RadioButton
                 android:id="@+id/rb_six_minute"
                 android:layout_width="wrap_content"
+                android:checked="true"
                 android:layout_height="wrap_content"
                 android:text="Six Minute Walking Test" />
 
