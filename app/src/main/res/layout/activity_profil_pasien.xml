@@ -2,6 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/walpaper"
+    android:focusableInTouchMode="true"
     android:padding="16dp">
 
 
@@ -38,6 +39,10 @@
             android:layout_height="wrap_content"
             android:hint="Nama"
             android:id="@+id/et_nama"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
             android:inputType="textPersonName" />
 
         <LinearLayout
@@ -90,13 +95,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Alamat"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
             android:id="@+id/alamat"
             android:inputType="textMultiLine" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:id="@+id/indikasirehab"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
             android:hint="Indikasi Rehab" />
 
         <LinearLayout
@@ -124,6 +138,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
             android:id="@+id/rekammedis"
             android:hint="No. Rekam Medis" />
 
@@ -194,24 +212,43 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
             android:id="@+id/keluhan"
             android:hint="Keluhan Saat Ini" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/ed_riwayatkeluarga"
             android:hint="Riwayat Keluarga" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/ed_riwayatsekarang"
             android:hint="Riwayat Sekarang" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/riwayatpengobatan"
             android:hint="Riwayat Pengobatan" />
 
@@ -219,6 +256,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tinggi Badan (cm)"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/tinggibadan"
             android:inputType="number" />
 
@@ -226,6 +268,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Berat Badan (kg)"
+            android:textSize="20sp"
+            android:minHeight="48dp"
+            android:background="@drawable/input_background"
+            android:paddingStart="8dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/beratbadan"
             android:inputType="number" />
 
