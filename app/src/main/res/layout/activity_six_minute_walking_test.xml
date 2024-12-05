@@ -33,6 +33,7 @@
             android:text="Six Minute Walking Test"
             android:textSize="20sp"
             android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,6 +52,7 @@
                 android:background="@drawable/input_background"
                 android:paddingStart="8dp"
                 android:inputType="number"
+                android:id="@+id/ed_tinggibadan"
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -74,6 +76,7 @@
                 android:textSize="20sp"
                 android:minHeight="48dp"
                 android:background="@drawable/input_background"
+                android:id="@+id/ed_beratbadan"
                 android:paddingStart="8dp"
                 android:inputType="number"
                 android:layout_marginTop="5dp"/>
@@ -99,6 +102,7 @@
                 android:textSize="20sp"
                 android:minHeight="48dp"
                 android:inputType="number"
+                android:id="@+id/ed_tdistirahat"
                 android:background="@drawable/input_background"
                 android:paddingStart="8dp"
                 android:layout_marginTop="5dp"/>
@@ -125,6 +129,7 @@
                 android:minHeight="48dp"
                 android:background="@drawable/input_background"
                 android:paddingStart="8dp"
+                android:id="@+id/ed_hristirahat"
                 android:inputType="number"
                 android:layout_marginTop="5dp"/>
             <TextView
@@ -148,6 +153,7 @@
                 android:layout_marginLeft="33dp"
                 android:textSize="20sp"
                 android:minHeight="48dp"
+                android:id="@+id/ed_jaraktempuh"
                 android:background="@drawable/input_background"
                 android:paddingStart="8dp"
                 android:inputType="number"
@@ -176,6 +182,7 @@
                 android:background="@drawable/input_background"
                 android:paddingStart="8dp"
                 android:focusableInTouchMode="true"
+                android:id="@+id/ed_tdmaksimallatihan"
                 android:inputType="number"
                 android:layout_marginTop="5dp"/>
             <TextView
@@ -203,6 +210,7 @@
                 android:focusableInTouchMode="true"
                 android:paddingStart="8dp"
                 android:inputType="number"
+                android:id="@+id/ed_hrmaksimallatihan"
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -227,6 +235,7 @@
                 android:minHeight="48dp"
                 android:focusableInTouchMode="true"
                 android:background="@drawable/input_background"
+                android:id="@+id/ed_kapasitasaerobic"
                 android:paddingStart="8dp"
                 android:inputType="number"
                 android:layout_marginTop="5dp"/>
@@ -253,6 +262,7 @@
                 android:minHeight="48dp"
                 android:focusableInTouchMode="true"
                 android:background="@drawable/input_background"
+                android:id="@+id/ed_thresholdiskemik"
                 android:paddingStart="8dp"
                 android:inputType="number"
                 android:layout_marginTop="5dp"/>
@@ -268,6 +278,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/btn_kembali"
                 android:layout_weight="1"
                 android:text="Kembali" />
 
@@ -281,8 +292,9 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/btn_selanjutnya"
                 android:layout_weight="1"
-                android:text="Download" />
+                android:text="Selanjutnya" />
         </LinearLayout>
 
 
