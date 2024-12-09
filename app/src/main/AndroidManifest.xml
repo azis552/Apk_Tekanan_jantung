@@ -14,17 +14,20 @@
         tools:ignore="LockedOrientationActivity"
         tools:targetApi="31">
         <activity
-            android:name=".TreadmillTestMetode"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".HasilSixMinute"
             android:exported="false" />
+        <activity
+            android:name=".TreadmillTestMetode"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SixMinuteWalkingTest"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ProfilPasien"
-            android:windowSoftInputMode="adjustPan|adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".MainActivity"
             android:exported="false"
