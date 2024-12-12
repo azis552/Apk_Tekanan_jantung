@@ -341,7 +341,7 @@
                     android:layout_height="wrap_content"
                     android:text="Riwayat Pengobatan"
                     android:layout_marginLeft="10dp"
-                    android:id="@+id/riwayatkeluarga"/>
+                    android:id="@+id/riwayatpengobatan"/>
             </LinearLayout>
         </LinearLayout>
     <LinearLayout
@@ -1308,8 +1308,46 @@
             </LinearLayout>
 
         </LinearLayout>
-
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Conclusion"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:minHeight="100dp"
+                android:id="@+id/ed_kesimpulan"
+                android:background="@drawable/input_background"
+                android:paddingStart="8dp"
+                android:inputType="number"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Program Latihan"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:minHeight="100dp"
+                android:id="@+id/ed_programlatihan"
+                android:background="@drawable/input_background"
+                android:paddingStart="8dp"
+                android:inputType="number"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
 
         <!-- Formulir -->
         <LinearLayout
@@ -1337,7 +1375,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_selanjutnya"
                 android:layout_weight="1"
-                android:text="Selanjutnya" />
+                android:text="Download" />
         </LinearLayout>
 
 
