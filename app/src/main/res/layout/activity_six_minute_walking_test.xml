@@ -51,7 +51,7 @@
                 android:minHeight="48dp"
                 android:background="@drawable/input_background"
                 android:paddingStart="8dp"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/ed_tinggibadan"
                 android:layout_marginTop="5dp"/>
             <TextView
@@ -78,7 +78,7 @@
                 android:background="@drawable/input_background"
                 android:id="@+id/ed_beratbadan"
                 android:paddingStart="8dp"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                 android:layout_marginLeft="103dp"
                 android:textSize="20sp"
                 android:minHeight="48dp"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/ed_tdistirahat"
                 android:background="@drawable/input_background"
                 android:paddingStart="8dp"
@@ -130,7 +130,7 @@
                 android:background="@drawable/input_background"
                 android:paddingStart="8dp"
                 android:id="@+id/ed_hristirahat"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                 android:id="@+id/ed_jaraktempuh"
                 android:background="@drawable/input_background"
                 android:paddingStart="8dp"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -183,7 +183,7 @@
                 android:paddingStart="8dp"
                 android:focusableInTouchMode="true"
                 android:id="@+id/ed_tdmaksimallatihan"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -209,7 +209,7 @@
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
                 android:paddingStart="8dp"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/ed_hrmaksimallatihan"
                 android:layout_marginTop="5dp"/>
             <TextView
@@ -237,7 +237,7 @@
                 android:background="@drawable/input_background"
                 android:id="@+id/ed_kapasitasaerobic"
                 android:paddingStart="8dp"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -264,7 +264,7 @@
                 android:background="@drawable/input_background"
                 android:id="@+id/ed_thresholdiskemik"
                 android:paddingStart="8dp"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:layout_marginTop="5dp"/>
 
         </LinearLayout>
