@@ -355,6 +355,7 @@
             android:layout_height="wrap_content"
             android:text="Six Minute Walking Test"
             android:textStyle="bold"
+            android:id="@+id/jenismetode"
             android:gravity="center"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -515,6 +516,30 @@
                 android:layout_marginLeft="5dp"
                 android:text="METs"/>
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Respon Iskemik"
+            android:id="@+id/tv_metode"
+            android:textSize="15sp"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rg_respon"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/Positif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Positif" />
+
+            <RadioButton
+                android:id="@+id/Negatif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Negatif" />
+        </RadioGroup>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1345,14 +1370,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <!-- Tombol di kiri -->
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_kembali"
                 android:layout_weight="1"
                 android:text="Kembali" />
+
 
             <!-- Ruang kosong untuk memisahkan tombol -->
             <View
@@ -1367,12 +1391,12 @@
                 android:id="@+id/btn_pdf"
                 android:layout_weight="1"
                 android:text="PDF" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_wa"
-                android:layout_weight="1"
-                android:text="WA"/>
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/btn_wa"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="WA"/>-->
         </LinearLayout>
 
 

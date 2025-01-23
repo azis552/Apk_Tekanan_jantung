@@ -53,10 +53,18 @@ class SixMinuteWalkingTest : AppCompatActivity() {
         val hrmaksimal = findViewById<EditText>(R.id.ed_hrmaksimallatihan)
         val kapasitasaerobic = findViewById<EditText>(R.id.ed_kapasitasaerobic)
         val thresholdiskemik = findViewById<EditText>(R.id.ed_thresholdiskemik)
+        val nadi = findViewById<EditText>(R.id.ed_nadi)
 
 
 
         val editor = sharedPreferences.edit()
+        val btnKembali = findViewById<Button>(R.id.btn_kembali)
+        btnKembali.setOnClickListener {
+            editor.remove("respon")
+            editor.apply()
+            val intent = Intent(this, ProfilPasien::class.java)
+            startActivity(intent)
+        }
         val btnSelanjutnya = findViewById<Button>(R.id.btn_selanjutnya)
         btnSelanjutnya.setOnClickListener {
 
@@ -88,13 +96,13 @@ class SixMinuteWalkingTest : AppCompatActivity() {
 
             editor.putString("cairanHF", cairanHF.toString())
             editor.putString("cairanNormal", cairanNormal.toString())
-
+            val nadi = nadi.text.toString()
             val hrmBB = calculateHRMBB(umur.toString())
-            val hrr = calculateHrr(hrmBB.toString(),hrmaksimal.text.toString())
-            val hrr20 = calculatehrr20(hrr.toString(), hrmaksimal.text.toString())
-            val hrr40 = calculatehrr40(hrr.toString(), hrmaksimal.text.toString())
-            val hrr60 = calculatehrr60(hrr.toString(), hrmaksimal.text.toString())
-            val hrr80 = calculatehrr80(hrr.toString(), hrmaksimal.text.toString())
+            val hrr = calculateHrr(hrmBB.toString(),nadi)
+            val hrr20 = calculatehrr20(hrr.toString(), nadi)
+            val hrr40 = calculatehrr40(hrr.toString(), nadi)
+            val hrr60 = calculatehrr60(hrr.toString(), nadi)
+            val hrr80 = calculatehrr80(hrr.toString(), nadi)
 
             editor.putString("hrmBB", hrmBB.toString())
             editor.putString("hrr",hrr.toString())
@@ -104,11 +112,11 @@ class SixMinuteWalkingTest : AppCompatActivity() {
             editor.putString("hrr80", hrr80.toString())
 
             val hrmtanpaBB = calculateHRMtanpaBB(umur.toString())
-            val hrrtanpa = calculateHrrtanpabb(hrmtanpaBB.toString(),hrmaksimal.text.toString())
-            val hrr20tanpa = calculatehrr20tanpa(hrrtanpa.toString(), hrmaksimal.text.toString())
-            val hrr40tanpa = calculatehrr40tanpa(hrrtanpa.toString(), hrmaksimal.text.toString())
-            val hrr60tanpa = calculatehrr60tanpa(hrrtanpa.toString(), hrmaksimal.text.toString())
-            val hrr80tanpa = calculatehrr80tanpa(hrrtanpa.toString(), hrmaksimal.text.toString())
+            val hrrtanpa = calculateHrrtanpabb(hrmtanpaBB.toString(),nadi)
+            val hrr20tanpa = calculatehrr20tanpa(hrrtanpa.toString(), nadi)
+            val hrr40tanpa = calculatehrr40tanpa(hrrtanpa.toString(), nadi)
+            val hrr60tanpa = calculatehrr60tanpa(hrrtanpa.toString(), nadi)
+            val hrr80tanpa = calculatehrr80tanpa(hrrtanpa.toString(), nadi)
 
             editor.putString("hrmtanpaBB", hrmtanpaBB.toString())
             editor.putString("hrrtanpa", hrrtanpa.toString())

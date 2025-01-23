@@ -28,6 +28,7 @@ class ProfilPasien : AppCompatActivity() {
         setContentView(R.layout.activity_profil_pasien)
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+
         val username = sharedPreferences.getString("username", "Guest")
 
         val tvUsername = findViewById<TextView>(R.id.tv_username)
@@ -121,8 +122,7 @@ class ProfilPasien : AppCompatActivity() {
             val ed_riwayatkeluarga = findViewById<EditText>(R.id.ed_riwayatkeluarga).text.toString()
             val riwayatsekarang = findViewById<EditText>(R.id.ed_riwayatsekarang).text.toString()
             val riwayatpengobatan = findViewById<EditText>(R.id.riwayatpengobatan).text.toString()
-            val tinggiBadan = findViewById<EditText>(R.id.tinggibadan).text.toString()
-            val beratBadan = findViewById<EditText>(R.id.beratbadan).text.toString()
+
 
 
             val metodetest = findViewById<RadioGroup>(R.id.rg_metodetest)
@@ -147,8 +147,6 @@ class ProfilPasien : AppCompatActivity() {
                 editor.putString("riwayatKeluarga", ed_riwayatkeluarga)
                 editor.putString("riwayatsekarang", riwayatsekarang)
                 editor.putString("riwayatpengobatan", riwayatpengobatan)
-                editor.putString("tinggiBadan", tinggiBadan)
-                editor.putString("beratBadan", beratBadan)
                 editor.putString("metodeTest", metodetestakhir)
                 editor.apply()
             }

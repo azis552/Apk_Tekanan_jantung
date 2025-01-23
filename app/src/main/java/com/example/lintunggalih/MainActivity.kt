@@ -20,7 +20,10 @@ class MainActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btn_login)
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
 
+        editor.clear()
+        editor.apply()
         btnLogin.setOnClickListener{
             val username = etUsername.text.toString()
 
