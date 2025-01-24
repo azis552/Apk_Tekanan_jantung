@@ -1,17 +1,49 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
-    android:padding="16dp">
-
-
-
-        <LinearLayout
+    android:focusableInTouchMode="true">
+     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <TextView
+            android:background="#F5F7FB"
+            android:orientation="vertical">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="150dp"
+             android:background="@drawable/background2"
+             android:clipToOutline="true"
+             android:scaleType="fitStart"
+             >
+             <ImageView
+                 android:layout_width="180dp"
+                 android:layout_height="120dp"
+                 android:layout_gravity="center"
+                 android:src="@drawable/medical"/>
+             <TextView
+                 android:id="@+id/tv_username"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Welcome back, Guest"
+                 android:textSize="22sp"
+                 android:textStyle="bold"
+                 android:textColor="@color/background"
+                 android:fontFamily="sans-serif-medium"
+                 android:letterSpacing="0.05"
+                 android:layout_gravity="center" />
+
+
+         </LinearLayout>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:paddingRight="30dp"
+             android:paddingLeft="30dp"
+             android:background="#F5F7FB"
+             android:orientation="vertical">
+
+         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -26,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_background"
                 android:hint="Nama"
+                android:layout_marginTop="20dp"
                 android:inputType="textPersonName"
                 android:minHeight="45dp"
                 android:paddingStart="8dp"
@@ -33,70 +66,74 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:gravity="left"
                 android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_tgllahir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Pilih Tanggal Lahir" />
-
                 <TextView
                     android:id="@+id/tv_tanggallahir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="10dp"
                     android:text="Tanggal Lahir"
+                    android:layout_weight="1"
                     android:textSize="18sp" />
+                <Button
+                    android:id="@+id/btn_tgllahir"
+                    android:layout_width="70dp"
+                    android:backgroundTint="#832525"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    app:icon="@drawable/date" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="175dp"
+                    android:layout_width="130dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:paddingTop="10dp"
                     android:text="Jenis Kelamin"
                     android:textAlignment="center"
-                    android:textSize="19sp" />
-
-                <RadioGroup
-                    android:id="@+id/rg_jeniskelamin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/lakilaki"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="Laki-Laki" />
-
-                    <RadioButton
-                        android:id="@+id/perempuan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Perempuan" />
-                </RadioGroup>
+                    android:textSize="18sp" />
             </LinearLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:background="@drawable/input_background"
+                 android:orientation="horizontal">
+                 <RadioGroup
+                     android:id="@+id/rg_jeniskelamin"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
 
+                     <RadioButton
+                         android:id="@+id/lakilaki"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:checked="true"
+                         android:text="Laki-Laki" />
+
+                     <RadioButton
+                         android:id="@+id/perempuan"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Perempuan" />
+                 </RadioGroup>
+             </LinearLayout>
             <EditText
                 android:id="@+id/alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
                 android:hint="Alamat"
@@ -109,7 +146,7 @@
                 android:id="@+id/indikasirehab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
                 android:hint="Indikasi Rehab"
@@ -117,29 +154,31 @@
                 android:paddingStart="8dp"
                 android:textSize="20sp" />
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:gravity="left"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_tglperiksa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Pilih Tanggal Periksa" />
+
 
                 <TextView
                     android:id="@+id/tv_tanggalperiksa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="10dp"
                     android:text="Tanggal Periksa"
+                    android:layout_weight="1"
                     android:textSize="18sp" />
-
+                <Button
+                    android:id="@+id/btn_tglperiksa"
+                    android:layout_width="70dp"
+                    android:backgroundTint="#832525"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    app:icon="@drawable/date" />
 
             </LinearLayout>
 
@@ -147,7 +186,7 @@
                 android:id="@+id/rekammedis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
                 android:hint="No. Rekam Medis"
@@ -160,64 +199,86 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="181dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:text="Faktor Resiko"
+                    android:paddingTop="10dp"
+                    android:minHeight="48dp"
+                    android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
-                <CheckBox
-                    android:id="@+id/diabetes"
-                    android:layout_width="104dp"
-                    android:layout_height="wrap_content"
-                    android:text="Diabetes" />
 
-                <CheckBox
-                    android:id="@+id/hipertensi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hipertensi" />
 
 
             </LinearLayout>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="2dp"
+             android:background="@drawable/input_background"
+             android:orientation="horizontal">
 
+             <CheckBox
+                 android:id="@+id/diabetes"
+                 android:layout_width="104dp"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:text="Diabetes" />
+
+             <CheckBox
+                 android:id="@+id/hipertensi"
+                 android:layout_width="wrap_content"
+                 android:layout_weight="1"
+                 android:layout_height="wrap_content"
+                 android:text="Hipertensi" />
+         </LinearLayout>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="2dp"
+             android:background="@drawable/input_background"
+             android:orientation="horizontal">
+
+             <CheckBox
+                 android:id="@+id/displidemia"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:text="Dislipidemia" />
+
+             <CheckBox
+                 android:id="@+id/perokok"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:text="Perokok" />
+
+         </LinearLayout>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="2dp"
+             android:background="@drawable/input_background"
+             android:orientation="horizontal">
+             <CheckBox
+                 android:id="@+id/riwayatkeluarga"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Riwayat Keluarga" />
+
+         </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/input_background"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/displidemia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dislipidemia" />
-
-                <CheckBox
-                    android:id="@+id/perokok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Perokok" />
-
-                <CheckBox
-                    android:id="@+id/riwayatkeluarga"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Riwayat Keluarga" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/input_background"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <CheckBox
                     android:id="@+id/lainlain"
@@ -235,7 +296,7 @@
                 android:id="@+id/keluhan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
                 android:hint="Keluhan Saat Ini"
@@ -247,7 +308,7 @@
                 android:id="@+id/ed_riwayatkeluarga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
                 android:hint="Riwayat Keluarga"
@@ -259,7 +320,7 @@
                 android:id="@+id/ed_riwayatsekarang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
                 android:hint="Riwayat Sekarang"
@@ -271,7 +332,7 @@
                 android:id="@+id/riwayatpengobatan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
                 android:hint="Riwayat Pengobatan"
@@ -282,7 +343,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:text="Metode Test"
+                android:textSize="18sp"
                 android:textAlignment="center"
                 android:textStyle="bold" />
 
@@ -311,9 +375,12 @@
                 android:id="@+id/btnSelanjutnya"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="right"
                 android:layout_marginBottom="30dp"
-                android:backgroundTint="@color/primary"
+                android:backgroundTint="#B10E1A"
                 android:text="Selanjutnya" />
-        </LinearLayout>
+
+         </LinearLayout>
+     </LinearLayout>
 </ScrollView>

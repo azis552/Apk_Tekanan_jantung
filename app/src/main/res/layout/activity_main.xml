@@ -32,7 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:background="@drawable/input_background"
+        android:background="@drawable/input_background1"
         android:hint="Masukkan Nama Anda"
         android:minHeight="48dp"
         android:paddingStart="8dp"

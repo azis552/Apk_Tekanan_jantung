@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +27,8 @@ class SixMinuteWalkingTest : AppCompatActivity() {
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val tanggallahir = sharedPreferences.getString("tanggalLahir", null)
         val username = sharedPreferences.getString("username", "guest")
-
+        val tvUsername = findViewById<TextView>(R.id.tv_username)
+        tvUsername.text = "Dokter : $username"
         if (tanggallahir.isNullOrEmpty() || !isValidDate(tanggallahir)) {
             Toast.makeText(this, "Tanggal lahir tidak valid!", Toast.LENGTH_SHORT).show()
             return
@@ -58,13 +60,7 @@ class SixMinuteWalkingTest : AppCompatActivity() {
 
 
         val editor = sharedPreferences.edit()
-        val btnKembali = findViewById<Button>(R.id.btn_kembali)
-        btnKembali.setOnClickListener {
-            editor.remove("respon")
-            editor.apply()
-            val intent = Intent(this, ProfilPasien::class.java)
-            startActivity(intent)
-        }
+
         val btnSelanjutnya = findViewById<Button>(R.id.btn_selanjutnya)
         btnSelanjutnya.setOnClickListener {
 

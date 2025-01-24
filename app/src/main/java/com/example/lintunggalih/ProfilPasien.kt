@@ -30,6 +30,72 @@ class ProfilPasien : AppCompatActivity() {
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
 
         val username = sharedPreferences.getString("username", "Guest")
+//        val namapasien = sharedPreferences.getString("namapasien","")
+//        val tanggalLahir = sharedPreferences.getString("tanggalLahir", "")
+//        val jenisKelamin = sharedPreferences.getString("jenisKelamin","")
+//        val alamat = sharedPreferences.getString("alamat", "")
+//        val indikasirehap = sharedPreferences.getString("indikasirehap","")
+//        val tanggalPeriksa = sharedPreferences.getString("tanggalPeriksa", "")
+//        val rekammedis = sharedPreferences.getString("rekammedis","")
+//        val faktorResiko = sharedPreferences.getString("faktorResiko", "")
+//        val lainlain = sharedPreferences.getString("tx_lainlain","")
+//        val keluhan = sharedPreferences.getString("keluhan","")
+//        val riwayatkeluarga = sharedPreferences.getString("riwayatkeluarga","")
+//        val riwayatpengobatan = sharedPreferences.getString("riwayatpengobatan","")
+//        val metodeTest = sharedPreferences.getString("metodeTest","")
+
+//        val ed_nama = findViewById<EditText>(R.id.et_nama)
+//        ed_nama.setText(namapasien.toString())
+//        val tv_tanggallahir = findViewById<TextView>(R.id.tv_tanggallahir)
+//        tv_tanggallahir.setText(tanggalLahir.toString())
+//        // Temukan RadioGroup dan RadioButton
+//        val rgJenisKelamin = findViewById<RadioGroup>(R.id.rg_jeniskelamin)
+//        val rbLakiLaki = findViewById<RadioButton>(R.id.lakilaki)
+//        val rbPerempuan = findViewById<RadioButton>(R.id.perempuan)
+//        when (jenisKelamin) {
+//            "Laki-Laki" -> rbLakiLaki.isChecked = true
+//            "Perempuan" -> rbPerempuan.isChecked = true
+//        }
+//        val ed_alamat = findViewById<EditText>(R.id.alamat)
+//        ed_alamat.setText(alamat.toString())
+//        val ed_indikasirehap = findViewById<EditText>(R.id.indikasirehab)
+//        ed_indikasirehap.setText(indikasirehap.toString())
+//        val tv_tanggalperiksa = findViewById<TextView>(R.id.tv_tanggalperiksa)
+//        tv_tanggalperiksa.text = tanggalPeriksa
+//        val ed_rekammedis = findViewById<EditText>(R.id.rekammedis)
+//        ed_rekammedis.setText(rekammedis)
+//
+//        val cb_diabetes = findViewById<CheckBox>(R.id.diabetes)
+//        val cb_hipertensi = findViewById<CheckBox>(R.id.hipertensi)
+//        val cb_dislipidemia = findViewById<CheckBox>(R.id.displidemia)
+//        val cb_perokok = findViewById<CheckBox>(R.id.perokok)
+//        val cb_riwayatkeluarga = findViewById<CheckBox>(R.id.riwayatkeluarga)
+//        val cb_lain = findViewById<CheckBox>(R.id.lainlain)
+//        val ed_lain = findViewById<EditText>(R.id.tx_lain)
+//
+//        val faktorList = faktorResiko!!?.split(",")
+//        if (faktorList != null) {
+//            cb_diabetes.isChecked = faktorList.contains("Diabetes")
+//        }
+//        if (faktorList != null) {
+//            cb_hipertensi.isChecked = faktorList.contains("Hipertensi")
+//        }
+//        if (faktorList != null) {
+//            cb_dislipidemia.isChecked = faktorList.contains("Dislipidemia")
+//        }
+//        if (faktorList != null) {
+//            cb_perokok.isChecked = faktorList.contains("Perokok")
+//        }
+//        if (faktorList != null) {
+//            cb_riwayatkeluarga.isChecked = faktorList.contains("Riwayat Keluarga")
+//        }
+//        if (faktorList != null) {
+//            cb_lain.isChecked = faktorList.contains("Lain-lain")
+//        }
+//        ed_lain.setText(lainlain.toString())
+//
+//        val ed_keluhan =
+
 
         val tvUsername = findViewById<TextView>(R.id.tv_username)
         tvUsername.text = "Dokter : $username"
@@ -116,7 +182,7 @@ class ProfilPasien : AppCompatActivity() {
             if(cbdisplidemia.isChecked) faktoresiko.add("Displidemia")
             if(cbperokok.isChecked) faktoresiko.add("Perokok")
             if(cbriwayatkeluarga.isChecked) faktoresiko.add("Riwayat Keluarga")
-            if(cblainlain.isChecked) faktoresiko.add("Lain-lain" + t_lain.text.toString())
+            if(cblainlain.isChecked) faktoresiko.add("Lain-lain ," + t_lain.text.toString())
 
             val keluhan = findViewById<EditText>(R.id.keluhan).text.toString()
             val ed_riwayatkeluarga = findViewById<EditText>(R.id.ed_riwayatkeluarga).text.toString()
@@ -148,6 +214,7 @@ class ProfilPasien : AppCompatActivity() {
                 editor.putString("riwayatsekarang", riwayatsekarang)
                 editor.putString("riwayatpengobatan", riwayatpengobatan)
                 editor.putString("metodeTest", metodetestakhir)
+                editor.putString("tx_lainlain", t_lain.text.toString())
                 editor.apply()
             }
 
