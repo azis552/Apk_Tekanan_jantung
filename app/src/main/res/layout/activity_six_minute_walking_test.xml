@@ -332,6 +332,11 @@
                     android:id="@+id/ed_thresholdiskemik"
                     android:paddingStart="8dp"
                     android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="5dp"/>
 
             </GridLayout>
             <!-- Formulir -->
