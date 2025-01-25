@@ -1,351 +1,413 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/walpaper"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
-    android:padding="16dp">
-
-
+    android:focusableInTouchMode="true">
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/rounded_border"
-        >
 
-        <!-- Bagian Header -->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/identitaspasien"
-            android:background="@drawable/rounded_image"
+        android:background="#F5F7FB"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/background2"
             android:clipToOutline="true"
-            android:scaleType="fitStart"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="-40dp"
-            android:text="Treadmill Test Metode"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:scaleType="fitStart">
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:src="@drawable/medical"/>
             <TextView
+                android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Tinggi Badan"/>
-            <EditText
-                android:layout_width="60dp"
+                android:text="Welcome back, Guest"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/background"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.05"
+                android:layout_gravity="center" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="30dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="30dp"
+            android:background="#F5F7FB"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="92dp"
+                android:gravity="center"
+                android:text="Treadmill Test Metode"
                 android:textSize="20sp"
-                android:minHeight="48dp"
-                android:background="@drawable/input_background"
-                android:paddingStart="8dp"
-                android:id="@+id/ed_tinggibadan"
-                android:inputType="numberDecimal"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:textStyle="bold" />
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="cm"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_columnWeight="3"
+                    android:text="Tinggi Badan"/>
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    android:background="@drawable/input_background1"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="8dp"
+                    android:focusableInTouchMode="true"
+                    android:id="@+id/ed_tinggibadan"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_columnWeight="1"
+                    android:text="cm"/>
+            </GridLayout>
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Berat Badan"/>
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="98dp"
-                android:textSize="20sp"
-                android:minHeight="48dp"
-                android:background="@drawable/input_background"
-                android:id="@+id/ed_beratbadan"
-                android:inputType="numberDecimal"
-                android:paddingStart="8dp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="Kg"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Nadi"/>
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="152dp"
-                android:textSize="20sp"
-                android:minHeight="48dp"
-                android:background="@drawable/input_background"
-                android:id="@+id/ed_nadi"
-                android:inputType="numberDecimal"
-                android:paddingStart="8dp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="bpm"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="TD Istirahat"/>
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="103dp"
-                android:textSize="20sp"
-                android:minHeight="48dp"
-                android:id="@+id/ed_tdistirahat"
-                android:background="@drawable/input_background"
-                android:inputType="numberDecimal"
-                android:paddingStart="8dp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="mmHg"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="HR Istirahat"/>
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="103dp"
-                android:textSize="20sp"
-                android:minHeight="48dp"
-                android:background="@drawable/input_background"
-                android:paddingStart="8dp"
-                android:id="@+id/ed_hristirahat"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="x/Menit"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Jarak Yang Ditempuh"/>
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="33dp"
-                android:textSize="20sp"
-                android:minHeight="48dp"
-                android:id="@+id/ed_jaraktempuh"
-                android:background="@drawable/input_background"
-                android:inputType="numberDecimal"
-                android:paddingStart="8dp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="Meter"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="TD Maksimal Latihan"/>
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="36dp"
-                android:textSize="20sp"
-                android:minHeight="48dp"
-                android:background="@drawable/input_background"
-                android:inputType="numberDecimal"
-                android:paddingStart="8dp"
-                android:focusableInTouchMode="true"
-                android:id="@+id/ed_tdmaksimallatihan"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="mmHg"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="HR Maksimal Latihan"/>
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="36dp"
-                android:textSize="20sp"
-                android:minHeight="48dp"
-                android:background="@drawable/input_background"
-                android:focusableInTouchMode="true"
-                android:paddingStart="8dp"
-                android:id="@+id/ed_hrmaksimallatihan"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="x/Menit"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Kapasitas Aerobic"/>
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="56dp"
-                android:textSize="20sp"
-                android:minHeight="48dp"
-                android:focusableInTouchMode="true"
-                android:background="@drawable/input_background"
-                android:inputType="numberDecimal"
-                android:id="@+id/ed_kapasitasaerobic"
-                android:paddingStart="8dp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="METs"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Respon Iskemik"
-            android:textSize="20sp"/>
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rg_respon"
-            android:orientation="horizontal">
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_columnWeight="3"
+                    android:text="Berat Badan"/>
 
-            <RadioButton
-                android:id="@+id/Positif"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Positif" />
+                <EditText
+                    android:id="@+id/ed_beratbadan"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/input_background1"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="8dp"
+                    android:focusableInTouchMode="true"
+                    android:minHeight="48dp"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_columnWeight="1"
+                    android:text="Kg"/>
+            </GridLayout>
 
-            <RadioButton
-                android:id="@+id/Negatif"
-                android:layout_width="wrap_content"
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Negatif" />
-        </RadioGroup>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Nadi"
+                    android:textSize="16sp"
+                    android:layout_columnWeight="3"/>
+
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    android:layout_columnWeight="1"
+                    android:background="@drawable/input_background1"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="8dp"
+                    android:focusableInTouchMode="true"
+                    android:id="@+id/ed_nadi"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="bpm"
+                    android:layout_marginLeft="5dp"
+                    android:layout_columnWeight="1"/>
+            </GridLayout>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_columnWeight="3"
+                    android:text="TD Istirahat"/>
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    android:layout_columnWeight="1"
+                    android:id="@+id/ed_tdistirahat"
+                    android:background="@drawable/input_background1"
+                    android:paddingStart="8dp"
+                    android:focusableInTouchMode="true"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_columnWeight="1"
+                    android:text="mmHg"/>
+            </GridLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_columnWeight="3"
+                    android:text="HR Istirahat"/>
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    android:paddingStart="8dp"
+                    android:focusableInTouchMode="true"
+                    android:background="@drawable/input_background1"
+                    android:id="@+id/ed_hristirahat"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_columnWeight="1"
+                    android:text="x/Menit"/>
+            </GridLayout>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="3"
+                    android:textSize="16sp"
+                    android:text="Jarak Yang Ditempuh"/>
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    android:id="@+id/ed_jaraktempuh"
+                    android:focusableInTouchMode="true"
+                    android:background="@drawable/input_background1"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="8dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_columnWeight="1"
+                    android:text="Meter"/>
+            </GridLayout>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_columnWeight="3"
+                    android:text="TD Maksimal Latihan"/>
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    android:background="@drawable/input_background1"
+                    android:paddingStart="8dp"
+                    android:focusableInTouchMode="true"
+                    android:id="@+id/ed_tdmaksimallatihan"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="5dp"
+                    android:text="mmHg"/>
+            </GridLayout>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_columnWeight="3"
+                    android:text="HR Maksimal Latihan"/>
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    android:background="@drawable/input_background1"
+                    android:focusableInTouchMode="true"
+                    android:paddingStart="8dp"
+                    android:id="@+id/ed_hrmaksimallatihan"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="5dp"
+                    android:text="x/Menit"/>
+            </GridLayout>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_columnWeight="3"
+                    android:text="Kapasitas Aerobic"/>
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    android:focusableInTouchMode="true"
+                    android:background="@drawable/input_background1"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/ed_kapasitasaerobic"
+                    android:paddingStart="8dp"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="5dp"
+                    android:text="METs"/>
+            </GridLayout>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_columnWeight="3"
+                    android:text="Threshold Iskemik Menit Ke"/>
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    android:focusableInTouchMode="true"
+                    android:background="@drawable/input_background1"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/ed_thresholdiskemik"
+                    android:paddingStart="8dp"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="5dp"/>
+
+            </GridLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:background="@drawable/input_background">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Threshold Iskemik Menit Ke"/>
-            <EditText
-                android:layout_width="60dp"
+                android:text="Respon Iskemik"
+                android:textSize="15sp"/>
+            <RadioGroup
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:textSize="20sp"
-                android:minHeight="48dp"
-                android:focusableInTouchMode="true"
-                android:inputType="numberDecimal"
-                android:background="@drawable/input_background"
-                android:id="@+id/ed_thresholdiskemik"
-                android:paddingStart="8dp"
-                android:layout_marginTop="5dp"/>
+                android:id="@+id/rg_respon"
+                android:orientation="horizontal">
 
-        </LinearLayout>
-        <!-- Formulir -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/Positif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Positif" />
 
-            <!-- Tombol di kiri -->
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_kembali"
-                android:layout_weight="1"
-                android:text="Kembali" />
-
-            <!-- Ruang kosong untuk memisahkan tombol -->
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="8" />
-
-            <!-- Tombol di kanan -->
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_selanjutnya"
-                android:layout_weight="1"
-                android:text="Selanjutnya" />
+                <RadioButton
+                    android:id="@+id/Negatif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Negatif" />
+            </RadioGroup>
         </LinearLayout>
 
 
+            <!-- Formulir -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
+
+
+                <!-- Ruang kosong untuk memisahkan tombol -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8" />
+
+                <!-- Tombol di kanan -->
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#832525"
+                    android:id="@+id/btn_selanjutnya"
+                    android:layout_weight="1"
+                    android:text="Selanjutnya" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

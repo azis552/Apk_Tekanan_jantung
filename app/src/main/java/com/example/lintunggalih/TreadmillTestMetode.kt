@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +28,8 @@ class TreadmillTestMetode : AppCompatActivity() {
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val tanggallahir = sharedPreferences.getString("tanggalLahir", null)
         val username = sharedPreferences.getString("username", "guest")
-
+        val tvUsername = findViewById<TextView>(R.id.tv_username)
+        tvUsername.text = "Dokter : $username"
         if (tanggallahir.isNullOrEmpty() || !isValidDate(tanggallahir)) {
             Toast.makeText(this, "Tanggal lahir tidak valid!", Toast.LENGTH_SHORT).show()
             return
@@ -61,13 +63,7 @@ class TreadmillTestMetode : AppCompatActivity() {
 
 
         val editor = sharedPreferences.edit()
-        val btnKembali = findViewById<Button>(R.id.btn_kembali)
-        btnKembali.setOnClickListener {
-            editor.remove("respon")
-            editor.apply()
-            val intent = Intent(this, ProfilPasien::class.java)
-            startActivity(intent)
-        }
+
         val btnSelanjutnya = findViewById<Button>(R.id.btn_selanjutnya)
         btnSelanjutnya.setOnClickListener {
             val rg_respon = findViewById<RadioGroup>(R.id.rg_respon)
@@ -77,107 +73,126 @@ class TreadmillTestMetode : AppCompatActivity() {
             val selectedRadioButtonId = rg_respon.checkedRadioButtonId
             val selectedRB = findViewById<RadioButton>(selectedRadioButtonId)
             val respon = selectedRB.text.toString()
-            editor.putString("umur", umur.toString())
-            editor.putString("respon",respon)
-            editor.putString("tinggibadan", tinggibadan.text.toString())
-            editor.putString("beratbadan", beratbadan.text.toString())
-            editor.putString("tdistirahat", tdistirahat.text.toString())
-            editor.putString("hristirahat", hristirahat.text.toString())
-            editor.putString("jaraktempuh", jaraktempuh.text.toString())
-            editor.putString("tdmaksimal", tdmaksimal.text.toString())
-            editor.putString("hrmaksimal", hrmaksimal.text.toString())
-            editor.putString("kapasitasaerobic",kapasitasaerobic.text.toString())
-            editor.putString("thresholdiskemik",thresholdiskemik.text.toString())
 
-            val hasilMets = calculateMets(jaraktempuh.text.toString())
-            val jarak30 = calculateJarak30(jaraktempuh.text.toString())
-            val cal06 = calculate06(jarak30.toString())
-            val cal07 = calculate06(jarak30.toString())
-            val cal085 = calculate085(jarak30.toString())
 
-            editor.putString("hasilmets", hasilMets.toString())
-            editor.putString("jarak30m", jarak30.toString())
-            editor.putString("jarak30m06", cal06.toString())
-            editor.putString("jarak30m07", cal07.toString())
-            editor.putString("jarak30m085", cal085.toString())
+            if (tinggibadan.text.toString().trim().isEmpty()
+                || beratbadan.text.toString().trim().isEmpty()
+                || tdistirahat.text.toString().trim().isEmpty()
+                || hristirahat.text.toString().trim().isEmpty()
+                || jaraktempuh.text.toString().trim().isEmpty()
+                || tdmaksimal.text.toString().trim().isEmpty()
+                || hrmaksimal.text.toString().trim().isEmpty()
+                || kapasitasaerobic.text.toString().trim().isEmpty()
+                || thresholdiskemik.text.toString().trim().isEmpty()
+                || nadi.text.toString().trim().isEmpty()
+                ) {
+                Toast.makeText(this, "Ada yang masih kosong!", Toast.LENGTH_SHORT).show()
 
-            val cairanHF = calculateTotalCairanHF(beratbadan.text.toString())
-            val cairanNormal = calculateTotalCairanNormal(beratbadan.text.toString())
+            } else {
+                editor.putString("umur", umur.toString())
+                editor.putString("respon",respon)
+                editor.putString("tinggibadan", tinggibadan.text.toString())
+                editor.putString("beratbadan", beratbadan.text.toString())
+                editor.putString("tdistirahat", tdistirahat.text.toString())
+                editor.putString("hristirahat", hristirahat.text.toString())
+                editor.putString("jaraktempuh", jaraktempuh.text.toString())
+                editor.putString("tdmaksimal", tdmaksimal.text.toString())
+                editor.putString("hrmaksimal", hrmaksimal.text.toString())
+                editor.putString("kapasitasaerobic",kapasitasaerobic.text.toString())
+                editor.putString("thresholdiskemik",thresholdiskemik.text.toString())
 
-            editor.putString("cairanHF", cairanHF.toString())
-            editor.putString("cairanNormal", cairanNormal.toString())
-            val nadi = nadi.text.toString()
-            val hrmBB = calculateHRMBB(umur.toString())
-            val hrr = calculateHrr(hrmBB.toString(),nadi)
-            val hrr20 = calculatehrr20(hrr.toString(), nadi)
-            val hrr40 = calculatehrr40(hrr.toString(), nadi)
-            val hrr60 = calculatehrr60(hrr.toString(), nadi)
-            val hrr80 = calculatehrr80(hrr.toString(), nadi)
+                val hasilMets = calculateMets(jaraktempuh.text.toString())
+                val jarak30 = calculateJarak30(jaraktempuh.text.toString())
+                val cal06 = calculate06(jarak30.toString())
+                val cal07 = calculate06(jarak30.toString())
+                val cal085 = calculate085(jarak30.toString())
 
-            editor.putString("hrmBB", hrmBB.toString())
-            editor.putString("hrr",hrr.toString())
-            editor.putString("hrr20", hrr20.toString())
-            editor.putString("hrr40", hrr40.toString())
-            editor.putString("hrr60", hrr60.toString())
-            editor.putString("hrr80", hrr80.toString())
+                editor.putString("hasilmets", hasilMets.toString())
+                editor.putString("jarak30m", jarak30.toString())
+                editor.putString("jarak30m06", cal06.toString())
+                editor.putString("jarak30m07", cal07.toString())
+                editor.putString("jarak30m085", cal085.toString())
 
-            val hrmtanpaBB = calculateHRMtanpaBB(umur.toString())
-            val hrrtanpa = calculateHrrtanpabb(hrmtanpaBB.toString(),nadi)
-            val hrr20tanpa = calculatehrr20tanpa(hrrtanpa.toString(), nadi)
-            val hrr40tanpa = calculatehrr40tanpa(hrrtanpa.toString(), nadi)
-            val hrr60tanpa = calculatehrr60tanpa(hrrtanpa.toString(), nadi)
-            val hrr80tanpa = calculatehrr80tanpa(hrrtanpa.toString(), nadi)
+                val cairanHF = calculateTotalCairanHF(beratbadan.text.toString())
+                val cairanNormal = calculateTotalCairanNormal(beratbadan.text.toString())
 
-            editor.putString("hrmtanpaBB", hrmtanpaBB.toString())
-            editor.putString("hrrtanpa", hrrtanpa.toString())
-            editor.putString("hrr20tanpa",hrr20tanpa.toString())
-            editor.putString("hrr40tanpa",hrr40tanpa.toString())
-            editor.putString("hrr60tanpa",hrr60tanpa.toString())
-            editor.putString("hrr80tanpa",hrr80tanpa.toString())
+                editor.putString("cairanHF", cairanHF.toString())
+                editor.putString("cairanNormal", cairanNormal.toString())
+                val nadi = nadi.text.toString()
+                val hrmBB = calculateHRMBB(umur.toString())
+                val hrr = calculateHrr(hrmBB.toString(),nadi)
+                val hrr20 = calculatehrr20(hrr.toString(), nadi)
+                val hrr40 = calculatehrr40(hrr.toString(), nadi)
+                val hrr60 = calculatehrr60(hrr.toString(), nadi)
+                val hrr80 = calculatehrr80(hrr.toString(), nadi)
+
+                editor.putString("hrmBB", hrmBB.toString())
+                editor.putString("hrr",hrr.toString())
+                editor.putString("hrr20", hrr20.toString())
+                editor.putString("hrr40", hrr40.toString())
+                editor.putString("hrr60", hrr60.toString())
+                editor.putString("hrr80", hrr80.toString())
+
+                val hrmtanpaBB = calculateHRMtanpaBB(umur.toString())
+                val hrrtanpa = calculateHrrtanpabb(hrmtanpaBB.toString(),nadi)
+                val hrr20tanpa = calculatehrr20tanpa(hrrtanpa.toString(), nadi)
+                val hrr40tanpa = calculatehrr40tanpa(hrrtanpa.toString(), nadi)
+                val hrr60tanpa = calculatehrr60tanpa(hrrtanpa.toString(), nadi)
+                val hrr80tanpa = calculatehrr80tanpa(hrrtanpa.toString(), nadi)
+
+                editor.putString("hrmtanpaBB", hrmtanpaBB.toString())
+                editor.putString("hrrtanpa", hrrtanpa.toString())
+                editor.putString("hrr20tanpa",hrr20tanpa.toString())
+                editor.putString("hrr40tanpa",hrr40tanpa.toString())
+                editor.putString("hrr60tanpa",hrr60tanpa.toString())
+                editor.putString("hrr80tanpa",hrr80tanpa.toString())
 
 //            hasil rehab
 //            mest
-            val mest20 = calculatemets20(kapasitasaerobic.text.toString())
-            val mest40 = calculatemets40(kapasitasaerobic.text.toString())
-            val mest60 = calculatemets60(kapasitasaerobic.text.toString())
+                val mest20 = calculatemets20(kapasitasaerobic.text.toString())
+                val mest40 = calculatemets40(kapasitasaerobic.text.toString())
+                val mest60 = calculatemets60(kapasitasaerobic.text.toString())
 
-            editor.putString("mest20", mest20.toString())
-            editor.putString("mest40", mest40.toString())
-            editor.putString("mest60", mest60.toString())
+                editor.putString("mest20", mest20.toString())
+                editor.putString("mest40", mest40.toString())
+                editor.putString("mest60", mest60.toString())
 //            vo2
-            val vo2 = calculatev02(kapasitasaerobic.text.toString())
-            val vo220 = calculatev0220(mest20.toString())
-            val vo240 = calculatev0240(mest40.toString())
-            val vo260 = calculatev0260(mest60.toString())
+                val vo2 = calculatev02(kapasitasaerobic.text.toString())
+                val vo220 = calculatev0220(mest20.toString())
+                val vo240 = calculatev0240(mest40.toString())
+                val vo260 = calculatev0260(mest60.toString())
 
-            editor.putString("vo2", vo2.toString())
-            editor.putString("vo220", vo220.toString())
-            editor.putString("vo240", vo240.toString())
-            editor.putString("vo260", vo260.toString())
+                editor.putString("vo2", vo2.toString())
+                editor.putString("vo220", vo220.toString())
+                editor.putString("vo240", vo240.toString())
+                editor.putString("vo260", vo260.toString())
 //            Spped
-            val speed = calculatespeed(vo2.toString())
-            val speed20 = calculatespeedvo2(vo220.toString())
-            val speed40 = calculatespeedvo4(vo240.toString())
-            val speed60 = calculatespeedvo6(vo260.toString())
+                val speed = calculatespeed(vo2.toString())
+                val speed20 = calculatespeedvo2(vo220.toString())
+                val speed40 = calculatespeedvo4(vo240.toString())
+                val speed60 = calculatespeedvo6(vo260.toString())
 
-            editor.putString("speed", speed.toString())
-            editor.putString("speed20", speed20.toString())
-            editor.putString("speed40", speed40.toString())
-            editor.putString("speed60", speed60.toString())
+                editor.putString("speed", speed.toString())
+                editor.putString("speed20", speed20.toString())
+                editor.putString("speed40", speed40.toString())
+                editor.putString("speed60", speed60.toString())
 
 //            jarakberjalan
-            val jarakberjalan = calculatejarakberjalan(speed.toString())
-            val jarakberjalan20 = calculatejarakberjalan20(speed20.toString())
-            val jarakberjalan40 = calculatejarakberjalan40(speed40.toString())
-            val jarakberjalan60 = calculatejarakberjalan60(speed60.toString())
+                val jarakberjalan = calculatejarakberjalan(speed.toString())
+                val jarakberjalan20 = calculatejarakberjalan20(speed20.toString())
+                val jarakberjalan40 = calculatejarakberjalan40(speed40.toString())
+                val jarakberjalan60 = calculatejarakberjalan60(speed60.toString())
 
-            editor.putString("jarakberjalan", jarakberjalan.toString())
-            editor.putString("jarakberjalan20", jarakberjalan20.toString())
-            editor.putString("jarakberjalan40", jarakberjalan40.toString())
-            editor.putString("jarakberjalan60", jarakberjalan60.toString())
-            editor.apply()
-            val intent = Intent(this, HasilSixMinute::class.java)
-            startActivity(intent)
+                editor.putString("jarakberjalan", jarakberjalan.toString())
+                editor.putString("jarakberjalan20", jarakberjalan20.toString())
+                editor.putString("jarakberjalan40", jarakberjalan40.toString())
+                editor.putString("jarakberjalan60", jarakberjalan60.toString())
+                editor.putString("metode","Treadmill Test Metode")
+                editor.apply()
+                val intent = Intent(this, HasilSixMinute::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 

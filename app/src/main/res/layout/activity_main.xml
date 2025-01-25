@@ -17,7 +17,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="56dp"
         android:text="Selamat Datang"
         android:textColor="#A40F0F"
         android:textSize="24sp"
@@ -31,7 +31,7 @@
         android:id="@+id/et_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="48dp"
         android:background="@drawable/input_background1"
         android:hint="Masukkan Nama Anda"
         android:minHeight="48dp"
@@ -47,7 +47,7 @@
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="168dp"
         android:backgroundTint="#F44336"
         android:stateListAnimator="@null"
         android:text="Login"
@@ -59,14 +59,15 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="436dp"
-        android:layout_height="483dp"
+        android:layout_width="459dp"
+        android:layout_height="464dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616"
-        app:srcCompat="@drawable/rectangle" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/background1" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -74,10 +75,10 @@
         android:layout_height="326dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.425"
+        app:layout_constraintVertical_bias="0.608"
         app:srcCompat="@drawable/doktericon2" />
 
 

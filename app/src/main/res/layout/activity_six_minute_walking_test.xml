@@ -2,6 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
     android:focusableInTouchMode="true">
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,6 +69,8 @@
                     android:minHeight="48dp"
                     android:background="@drawable/input_background1"
                     android:inputType="numberDecimal"
+                    android:focusableInTouchMode="true"
+                    android:paddingStart="8dp"
                     android:id="@+id/ed_tinggibadan"
                     android:layout_marginTop="5dp"/>
                 <TextView
@@ -96,7 +100,9 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_background1"
                     android:inputType="numberDecimal"
+                    android:focusableInTouchMode="true"
                     android:minHeight="48dp"
+                    android:paddingStart="8dp"
                     android:textSize="20sp" />
                 <TextView
                     android:layout_width="0dp"
@@ -126,6 +132,8 @@
                     android:layout_columnWeight="1"
                     android:background="@drawable/input_background1"
                     android:inputType="numberDecimal"
+                    android:paddingStart="8dp"
+                    android:focusableInTouchMode="true"
                     android:id="@+id/ed_nadi"/>
 
                 <TextView
@@ -154,8 +162,8 @@
                     android:layout_columnWeight="1"
                     android:id="@+id/ed_tdistirahat"
                     android:background="@drawable/input_background1"
-                    android:inputType="numberDecimal"
                     android:paddingStart="8dp"
+                    android:focusableInTouchMode="true"
                     android:layout_marginTop="5dp"/>
                 <TextView
                     android:layout_width="0dp"
@@ -182,8 +190,10 @@
                     android:layout_columnWeight="1"
                     android:textSize="20sp"
                     android:minHeight="48dp"
+                    android:focusableInTouchMode="true"
                     android:background="@drawable/input_background1"
                     android:id="@+id/ed_hristirahat"
+                    android:paddingStart="8dp"
                     android:layout_marginTop="5dp"/>
                 <TextView
                     android:layout_width="0dp"
@@ -209,6 +219,7 @@
                     android:textSize="20sp"
                     android:minHeight="48dp"
                     android:id="@+id/ed_jaraktempuh"
+                    android:focusableInTouchMode="true"
                     android:background="@drawable/input_background1"
                     android:inputType="numberDecimal"
                     android:layout_columnWeight="1"
@@ -238,7 +249,6 @@
                     android:textSize="20sp"
                     android:minHeight="48dp"
                     android:background="@drawable/input_background1"
-                    android:inputType="numberDecimal"
                     android:paddingStart="8dp"
                     android:focusableInTouchMode="true"
                     android:id="@+id/ed_tdmaksimallatihan"

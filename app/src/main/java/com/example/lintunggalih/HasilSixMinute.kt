@@ -37,12 +37,18 @@ class HasilSixMinute : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_hasil_six_minute)
+
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val usernamedokter = sharedPreferences.getString("username", "guest")
+        val tvUsernamedokter = findViewById<TextView>(R.id.tv_username)
+        tvUsernamedokter.text = "Dokter : $usernamedokter"
         val respon = sharedPreferences.getString("respon",null)
         val dokter = sharedPreferences.getString("username", "Guest")
         val nama_pasien = sharedPreferences.getString("namapasien","Nama Pasien")
         val namapasien = findViewById<TextView>(R.id.nama_pasien)
         namapasien.text = nama_pasien
+        val username = sharedPreferences.getString("username", "guest")
+        val tvUsername = findViewById<TextView>(R.id.tv_username)
 
         val usia_pasien = sharedPreferences.getString("umur","Umur Pasien")
         val usiapasien = findViewById<TextView>(R.id.usia_pasien)
@@ -265,10 +271,10 @@ class HasilSixMinute : AppCompatActivity() {
         val radioGroupRespon = findViewById<RadioGroup>(R.id.rg_respon)
         val radioButtonPositif = findViewById<RadioButton>(R.id.Positif)
         val radioButtonNegatif = findViewById<RadioButton>(R.id.Negatif)
+        val metode = sharedPreferences.getString("metode","0")
 
-
-        if (respon != null){
-            jenis_metode.text = "Treadmill Test Metode"
+        if(metode.toString() == "Treadmill Test Metode" ){
+            jenis_metode.text = metode.toString()
             // Tampilkan TextView dan RadioGroup
             textViewResponIskemik.visibility = View.VISIBLE
             radioGroupRespon.visibility = View.VISIBLE
@@ -284,19 +290,11 @@ class HasilSixMinute : AppCompatActivity() {
             textViewResponIskemik.visibility = View.GONE
             radioGroupRespon.visibility = View.GONE
         }
-
-//        btn_wa.setOnClickListener {
-//            Toast.makeText(this, ed_kesimpulan.text.toString(), Toast.LENGTH_SHORT).show()
-//        }
         btn_pdf.setOnClickListener {
             exportPDF()
         }
 
-        val btn_kembali = findViewById<Button>(R.id.btn_kembali)
-        btn_kembali.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun exportPDF(){
