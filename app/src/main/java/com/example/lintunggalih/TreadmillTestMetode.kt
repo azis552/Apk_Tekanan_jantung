@@ -27,7 +27,10 @@ class TreadmillTestMetode : AppCompatActivity() {
         setContentView(R.layout.activity_treadmill_test_metode)
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val tanggallahir = sharedPreferences.getString("tanggalLahir", null)
+        val metodeTestShared = sharedPreferences.getString("metodeTest","0")
         val username = sharedPreferences.getString("username", "guest")
+        val metodeTestTv = findViewById<TextView>(R.id.metode_test)
+        metodeTestTv.text = metodeTestShared.toString()
         val tvUsername = findViewById<TextView>(R.id.tv_username)
         tvUsername.text = "Dokter : $username"
         if (tanggallahir.isNullOrEmpty() || !isValidDate(tanggallahir)) {
@@ -58,10 +61,6 @@ class TreadmillTestMetode : AppCompatActivity() {
         val hrmaksimal = findViewById<EditText>(R.id.ed_hrmaksimallatihan)
         val kapasitasaerobic = findViewById<EditText>(R.id.ed_kapasitasaerobic)
         val thresholdiskemik = findViewById<EditText>(R.id.ed_thresholdiskemik)
-
-        val nadi = findViewById<EditText>(R.id.ed_nadi)
-
-
         val editor = sharedPreferences.edit()
 
         val btnSelanjutnya = findViewById<Button>(R.id.btn_selanjutnya)
@@ -84,7 +83,6 @@ class TreadmillTestMetode : AppCompatActivity() {
                 || hrmaksimal.text.toString().trim().isEmpty()
                 || kapasitasaerobic.text.toString().trim().isEmpty()
                 || thresholdiskemik.text.toString().trim().isEmpty()
-                || nadi.text.toString().trim().isEmpty()
                 ) {
                 Toast.makeText(this, "Ada yang masih kosong!", Toast.LENGTH_SHORT).show()
 
@@ -118,13 +116,13 @@ class TreadmillTestMetode : AppCompatActivity() {
 
                 editor.putString("cairanHF", cairanHF.toString())
                 editor.putString("cairanNormal", cairanNormal.toString())
-                val nadi = nadi.text.toString()
+                val hristirahatRumus = hristirahat.text.toString()
                 val hrmBB = calculateHRMBB(umur.toString())
-                val hrr = calculateHrr(hrmBB.toString(),nadi)
-                val hrr20 = calculatehrr20(hrr.toString(), nadi)
-                val hrr40 = calculatehrr40(hrr.toString(), nadi)
-                val hrr60 = calculatehrr60(hrr.toString(), nadi)
-                val hrr80 = calculatehrr80(hrr.toString(), nadi)
+                val hrr = calculateHrr(hrmBB.toString(),hristirahatRumus)
+                val hrr20 = calculatehrr20(hrr.toString(), hristirahatRumus)
+                val hrr40 = calculatehrr40(hrr.toString(), hristirahatRumus)
+                val hrr60 = calculatehrr60(hrr.toString(), hristirahatRumus)
+                val hrr80 = calculatehrr80(hrr.toString(), hristirahatRumus)
 
                 editor.putString("hrmBB", hrmBB.toString())
                 editor.putString("hrr",hrr.toString())
@@ -134,11 +132,11 @@ class TreadmillTestMetode : AppCompatActivity() {
                 editor.putString("hrr80", hrr80.toString())
 
                 val hrmtanpaBB = calculateHRMtanpaBB(umur.toString())
-                val hrrtanpa = calculateHrrtanpabb(hrmtanpaBB.toString(),nadi)
-                val hrr20tanpa = calculatehrr20tanpa(hrrtanpa.toString(), nadi)
-                val hrr40tanpa = calculatehrr40tanpa(hrrtanpa.toString(), nadi)
-                val hrr60tanpa = calculatehrr60tanpa(hrrtanpa.toString(), nadi)
-                val hrr80tanpa = calculatehrr80tanpa(hrrtanpa.toString(), nadi)
+                val hrrtanpa = calculateHrrtanpabb(hrmtanpaBB.toString(),hristirahatRumus)
+                val hrr20tanpa = calculatehrr20tanpa(hrrtanpa.toString(), hristirahatRumus)
+                val hrr40tanpa = calculatehrr40tanpa(hrrtanpa.toString(), hristirahatRumus)
+                val hrr60tanpa = calculatehrr60tanpa(hrrtanpa.toString(), hristirahatRumus)
+                val hrr80tanpa = calculatehrr80tanpa(hrrtanpa.toString(), hristirahatRumus)
 
                 editor.putString("hrmtanpaBB", hrmtanpaBB.toString())
                 editor.putString("hrrtanpa", hrrtanpa.toString())
@@ -187,7 +185,7 @@ class TreadmillTestMetode : AppCompatActivity() {
                 editor.putString("jarakberjalan20", jarakberjalan20.toString())
                 editor.putString("jarakberjalan40", jarakberjalan40.toString())
                 editor.putString("jarakberjalan60", jarakberjalan60.toString())
-                editor.putString("metode","Treadmill Test Metode")
+                editor.putString("metode",metodeTestShared.toString())
                 editor.apply()
                 val intent = Intent(this, HasilSixMinute::class.java)
                 startActivity(intent)
@@ -272,34 +270,34 @@ class TreadmillTestMetode : AppCompatActivity() {
 
         return hrmbb
     }
-    private fun calculateHrr(hrmbb: String, nadi: String): BigDecimal?{
+    private fun calculateHrr(hrmbb: String, hristirahatRumus: String): BigDecimal?{
         val hrmbbhr = BigDecimal(hrmbb)
-        val nadiHR = BigDecimal(nadi)
-        val hrr = hrmbbhr.subtract(nadiHR).setScale(1, RoundingMode.HALF_UP)
+        val hristirahatRumusHR = BigDecimal(hristirahatRumus)
+        val hrr = hrmbbhr.subtract(hristirahatRumusHR).setScale(1, RoundingMode.HALF_UP)
         return hrr
     }
-    private fun calculatehrr20(hrr: String,nadi: String): BigDecimal {
+    private fun calculatehrr20(hrr: String,hristirahatRumus: String): BigDecimal {
         val hrr02 = BigDecimal(hrr)
         val hrr20 = hrr02.multiply(BigDecimal("0.2"))
-        val hrr20akhir = hrr20.add(BigDecimal(nadi)).setScale(1, RoundingMode.HALF_UP)
+        val hrr20akhir = hrr20.add(BigDecimal(hristirahatRumus)).setScale(1, RoundingMode.HALF_UP)
         return hrr20akhir
     }
-    private fun calculatehrr40(hrr: String,nadi: String): BigDecimal {
+    private fun calculatehrr40(hrr: String,hristirahatRumus: String): BigDecimal {
         val hrr04 = BigDecimal(hrr)
         val hrr40 = hrr04.multiply(BigDecimal("0.4"))
-        val hrr40akhir = hrr40.add(BigDecimal(nadi)).setScale(1, RoundingMode.HALF_UP)
+        val hrr40akhir = hrr40.add(BigDecimal(hristirahatRumus)).setScale(1, RoundingMode.HALF_UP)
         return hrr40akhir
     }
-    private fun calculatehrr60(hrr: String ,nadi: String): BigDecimal {
+    private fun calculatehrr60(hrr: String ,hristirahatRumus: String): BigDecimal {
         val hrr06 = BigDecimal(hrr)
         val hrr60 = hrr06.multiply(BigDecimal("0.6"))
-        val hrr60akhir = hrr60.add(BigDecimal(nadi)).setScale(1, RoundingMode.HALF_UP)
+        val hrr60akhir = hrr60.add(BigDecimal(hristirahatRumus)).setScale(1, RoundingMode.HALF_UP)
         return hrr60akhir
     }
-    private fun calculatehrr80(hrr: String ,nadi: String): BigDecimal {
+    private fun calculatehrr80(hrr: String ,hristirahatRumus: String): BigDecimal {
         val hrr08 = BigDecimal(hrr)
         val hrr80 = hrr08.multiply(BigDecimal("0.8"))
-        val hrr80akhir = hrr80.add(BigDecimal(nadi)).setScale(1, RoundingMode.HALF_UP)
+        val hrr80akhir = hrr80.add(BigDecimal(hristirahatRumus)).setScale(1, RoundingMode.HALF_UP)
         return hrr80akhir
     }
 
@@ -309,34 +307,34 @@ class TreadmillTestMetode : AppCompatActivity() {
 
         return hrmtanpabb
     }
-    private fun calculateHrrtanpabb(hrmtanpabb: String, nadi: String): BigDecimal?{
+    private fun calculateHrrtanpabb(hrmtanpabb: String, hristirahatRumus: String): BigDecimal?{
         val hrmtanpabbhr = BigDecimal(hrmtanpabb)
-        val nadiHR = BigDecimal(nadi)
-        val hrr = hrmtanpabbhr.subtract(nadiHR).setScale(1, RoundingMode.HALF_UP)
+        val hristirahatRumusHR = BigDecimal(hristirahatRumus)
+        val hrr = hrmtanpabbhr.subtract(hristirahatRumusHR).setScale(1, RoundingMode.HALF_UP)
         return hrr
     }
-    private fun calculatehrr20tanpa(hrr: String,nadi: String): BigDecimal {
+    private fun calculatehrr20tanpa(hrr: String,hristirahatRumus: String): BigDecimal {
         val hrr02 = BigDecimal(hrr)
         val hrr20 = hrr02.multiply(BigDecimal("0.2"))
-        val hrr20akhir = hrr20.add(BigDecimal(nadi)).setScale(1, RoundingMode.HALF_UP)
+        val hrr20akhir = hrr20.add(BigDecimal(hristirahatRumus)).setScale(1, RoundingMode.HALF_UP)
         return hrr20akhir
     }
-    private fun calculatehrr40tanpa(hrr: String,nadi: String): BigDecimal {
+    private fun calculatehrr40tanpa(hrr: String,hristirahatRumus: String): BigDecimal {
         val hrr04 = BigDecimal(hrr)
         val hrr40 = hrr04.multiply(BigDecimal("0.4"))
-        val hrr40akhir = hrr40.add(BigDecimal(nadi)).setScale(1, RoundingMode.HALF_UP)
+        val hrr40akhir = hrr40.add(BigDecimal(hristirahatRumus)).setScale(1, RoundingMode.HALF_UP)
         return hrr40akhir
     }
-    private fun calculatehrr60tanpa(hrr: String ,nadi: String): BigDecimal {
+    private fun calculatehrr60tanpa(hrr: String ,hristirahatRumus: String): BigDecimal {
         val hrr06 = BigDecimal(hrr)
         val hrr60 = hrr06.multiply(BigDecimal("0.6"))
-        val hrr60akhir = hrr60.add(BigDecimal(nadi)).setScale(1, RoundingMode.HALF_UP)
+        val hrr60akhir = hrr60.add(BigDecimal(hristirahatRumus)).setScale(1, RoundingMode.HALF_UP)
         return hrr60akhir
     }
-    private fun calculatehrr80tanpa(hrr: String ,nadi: String): BigDecimal {
+    private fun calculatehrr80tanpa(hrr: String ,hristirahatRumus: String): BigDecimal {
         val hrr08 = BigDecimal(hrr)
         val hrr80 = hrr08.multiply(BigDecimal("0.8"))
-        val hrr80akhir = hrr80.add(BigDecimal(nadi)).setScale(1, RoundingMode.HALF_UP)
+        val hrr80akhir = hrr80.add(BigDecimal(hristirahatRumus)).setScale(1, RoundingMode.HALF_UP)
         return hrr80akhir
     }
 

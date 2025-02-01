@@ -91,12 +91,16 @@
                     android:layout_marginLeft="10dp"
                     app:icon="@drawable/date" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
+                android:layout_marginTop="20dp"
+                android:background="@drawable/input_background"
+                android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/input_background"
                 android:orientation="horizontal">
 
                 <TextView
@@ -111,7 +115,6 @@
              <LinearLayout
                  android:layout_width="match_parent"
                  android:layout_height="match_parent"
-                 android:background="@drawable/input_background"
                  android:orientation="horizontal">
                  <RadioGroup
                      android:id="@+id/rg_jeniskelamin"
@@ -133,6 +136,7 @@
                          android:text="Perempuan" />
                  </RadioGroup>
              </LinearLayout>
+            </LinearLayout>
             <EditText
                 android:id="@+id/alamat"
                 android:layout_width="match_parent"
@@ -199,12 +203,16 @@
                 android:textSize="20sp" />
             <!-- Faktor Resiko -->
 
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
 
+                 android:layout_marginTop="20dp"
+                 android:background="@drawable/input_background"
+                 android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/input_background"
                 android:orientation="horizontal">
 
                 <TextView
@@ -221,7 +229,6 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:layout_marginTop="2dp"
-             android:background="@drawable/input_background"
              android:orientation="horizontal">
 
              <CheckBox
@@ -242,7 +249,6 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:layout_marginTop="2dp"
-             android:background="@drawable/input_background"
              android:orientation="horizontal">
 
              <CheckBox
@@ -264,7 +270,6 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:layout_marginTop="2dp"
-             android:background="@drawable/input_background"
              android:orientation="horizontal">
              <CheckBox
                  android:id="@+id/riwayatkeluarga"
@@ -277,7 +282,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:background="@drawable/input_background"
                 android:orientation="vertical">
 
                 <CheckBox
@@ -291,7 +295,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-
+             </LinearLayout>
             <EditText
                 android:id="@+id/keluhan"
                 android:layout_width="match_parent"
@@ -312,7 +316,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
-                android:hint="Riwayat Keluarga"
+                android:hint="Diagnosis"
                 android:minHeight="48dp"
                 android:paddingStart="8dp"
                 android:textSize="20sp" />
@@ -324,22 +328,39 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/input_background"
                 android:focusableInTouchMode="true"
-                android:hint="Riwayat Sekarang"
+                android:hint="Jenis Tindakan"
                 android:minHeight="48dp"
                 android:paddingStart="8dp"
                 android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/riwayatpengobatan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/input_background"
-                android:focusableInTouchMode="true"
-                android:hint="Riwayat Pengobatan"
-                android:minHeight="48dp"
-                android:paddingStart="8dp"
-                android:textSize="20sp" />
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                    android:padding="5dp"
+                 android:layout_marginTop="20dp"
+                 android:background="@drawable/input_background"
+                 android:orientation="vertical">
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:focusableInTouchMode="true"
+                 android:hint="Riwayat Pengobatan"
+                 android:minHeight="48dp"
+                 android:paddingStart="8dp"
+                 android:textSize="20sp" />
+             <LinearLayout
+                 android:id="@+id/containerLayout"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical" />
+             <!-- Tombol tambah -->
+             <Button
+                 android:id="@+id/plus"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+                 android:backgroundTint="#832525"
+                 android:text="Tambah Obat" />
+             </LinearLayout>
             <!-- Metode Test -->
             <TextView
                 android:layout_width="match_parent"
@@ -364,12 +385,22 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="Six Minute Walking Test" />
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Treadmill Test Metode"
+                    android:textSize="16sp"/>
                 <RadioButton
                     android:id="@+id/rb_treadmill"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Treadmill Test Metode" />
+                    android:text="Exercise stress test" />
+                <RadioButton
+                    android:id="@+id/rb_ergo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ergocycle Stress Test" />
             </RadioGroup>
             <!-- Tombol -->
             <Button

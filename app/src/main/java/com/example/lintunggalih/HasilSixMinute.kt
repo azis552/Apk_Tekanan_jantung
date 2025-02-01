@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
@@ -11,6 +12,9 @@ import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.text.Layout
+import android.text.StaticLayout
+import android.text.TextPaint
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -24,6 +28,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import org.json.JSONArray
 import org.w3c.dom.Text
 import java.io.File
 import java.io.FileOutputStream
@@ -33,12 +38,15 @@ import java.util.Date
 
 class HasilSixMinute : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
+
+    private lateinit var sharedRiwayat: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_hasil_six_minute)
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        sharedRiwayat = getSharedPreferences("RiwayatPengobatan", MODE_PRIVATE)
         val usernamedokter = sharedPreferences.getString("username", "guest")
         val tvUsernamedokter = findViewById<TextView>(R.id.tv_username)
         tvUsernamedokter.text = "Dokter : $usernamedokter"
@@ -90,9 +98,24 @@ class HasilSixMinute : AppCompatActivity() {
         val riwayat_saatini = findViewById<TextView>(R.id.riwayatsaatini)
         riwayat_saatini.text = riwayatsaatini
 
-        val riwayatpengobatan = sharedPreferences.getString("riwayatpengobatan", "Riwayat Pengobatan")
+        val jsonString = sharedRiwayat.getString("riwayat_pengobatan", null)
         val riwayat_pengobatan = findViewById<TextView>(R.id.riwayatpengobatan)
-        riwayat_pengobatan.text = riwayatpengobatan
+        if (!jsonString.isNullOrEmpty()) {
+            val jsonArray = JSONArray(jsonString)
+            val stringBuilder = StringBuilder()
+
+            for (i in 0 until jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(i)
+                val obat = jsonObject.getString("obat")
+                val dosis = jsonObject.getString("dosis")
+
+                stringBuilder.append("Obat: $obat\nDosis: $dosis\n")
+            }
+
+            riwayat_pengobatan.text = stringBuilder.toString() // Set teks ke TextView
+        } else {
+            riwayat_pengobatan.text = "Tidak ada riwayat pengobatan"
+        }
 
         val td_istirahat = sharedPreferences.getString("tdistirahat","0")
         val tdistirahat = findViewById<EditText>(R.id.ed_tdistirahat)
@@ -271,13 +294,21 @@ class HasilSixMinute : AppCompatActivity() {
         val radioGroupRespon = findViewById<RadioGroup>(R.id.rg_respon)
         val radioButtonPositif = findViewById<RadioButton>(R.id.Positif)
         val radioButtonNegatif = findViewById<RadioButton>(R.id.Negatif)
+        val tvkapasitasaerobic = findViewById<TextView>(R.id.tv_kapasitasaerobic)
+        val satuankapasitas = findViewById<TextView>(R.id.satuankapasitasaerobic)
+        val tvtershold = findViewById<TextView>(R.id.tv_threshold)
+        val saturanthershold = findViewById<TextView>(R.id.saturanThreshold)
         val metode = sharedPreferences.getString("metode","0")
-
-        if(metode.toString() == "Treadmill Test Metode" ){
+        if(metode.toString() != "Six Minute Walking Test" ){
             jenis_metode.text = metode.toString()
             // Tampilkan TextView dan RadioGroup
             textViewResponIskemik.visibility = View.VISIBLE
             radioGroupRespon.visibility = View.VISIBLE
+            tvkapasitasaerobic.visibility = View.VISIBLE
+            kapasitasaerobic.visibility = View.VISIBLE
+            satuankapasitas.visibility = View.VISIBLE
+            tvtershold.visibility = View.VISIBLE
+            saturanthershold.visibility = View.VISIBLE
 
             // Pilih RadioButton sesuai nilai respon
             when (respon) {
@@ -289,70 +320,38 @@ class HasilSixMinute : AppCompatActivity() {
             // Sembunyikan TextView dan RadioGroup jika respon tidak ada
             textViewResponIskemik.visibility = View.GONE
             radioGroupRespon.visibility = View.GONE
+            tvkapasitasaerobic.visibility = View.GONE
+            kapasitasaerobic.visibility = View.GONE
+            satuankapasitas.visibility = View.GONE
+            thresholdiskemik.visibility = View.GONE
+            tvtershold.visibility = View.GONE
+
+            saturanthershold.visibility = View.GONE
         }
         btn_pdf.setOnClickListener {
             exportPDF()
+        }
+
+        // Tombol Reset
+        val btnReset = findViewById<Button>(R.id.btn_kembali)
+        btnReset.setOnClickListener {
+            // Hapus semua data di SharedPreferences
+            sharedPreferences.edit().clear().apply()
+            sharedRiwayat.edit().clear().apply()
+
+            // Tampilkan pesan konfirmasi
+            Toast.makeText(this, "Data berhasil direset", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
 
     }
 
     private fun exportPDF(){
-
-
-//        // Buat dokumen PDF
-//        val pdfDocument = PdfDocument()
-//        val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create() // Ukuran A4 dalam piksel
-//        val page = pdfDocument.startPage(pageInfo)
-//
-//        val canvas = page.canvas
-//        val paint = Paint()
-//        paint.textSize = 12f
-//
-//        var x = 20f
-//        var y = 40f
-//
-        // Ambil data dari SharedPreferences
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-//        val dokter = sharedPreferences.getString("username", "Guest")
-//        val nama_pasien = sharedPreferences.getString("namapasien", "Nama Pasien")
-//        val usia_pasien = sharedPreferences.getString("umur", "Umur Pasien")
-//        val jenis_kelamin = sharedPreferences.getString("jenisKelamin", "Jenis Kelamin")
-//        val alamat_pasien = sharedPreferences.getString("alamat", "Alamat Pasien")
-//
-//        // Tambahkan data ke PDF
-//        canvas.drawText("Nama Dokter: $dokter", x, y, paint)
-//        y += 20f
-//        canvas.drawText("Nama Pasien: $nama_pasien", x, y, paint)
-//        y += 20f
-//        canvas.drawText("Usia: $usia_pasien", x, y, paint)
-//        y += 20f
-//        canvas.drawText("Jenis Kelamin: $jenis_kelamin", x, y, paint)
-//        y += 20f
-//        canvas.drawText("Alamat: $alamat_pasien", x, y, paint)
-//        y += 40f
-//
-//        // Tambahkan lebih banyak data dari SharedPreferences ke PDF
-//        val dataFields = mapOf(
-//            "Indikasi Rehab" to sharedPreferences.getString("indikasirehap", "Indikasi Rehab"),
-//            "Tanggal Periksa" to sharedPreferences.getString("tanggalPeriksa", "Tanggal Periksa"),
-//            "Rekam Medis" to sharedPreferences.getString("rekammedis", "Rekam Medis"),
-//            "Faktor Risiko" to sharedPreferences.getString("faktorResiko", "Faktor Risiko"),
-//            "Keluhan Saat Ini" to sharedPreferences.getString("keluhan", "Keluhan Pasien"),
-//            "Riwayat Keluarga" to sharedPreferences.getString("riwayatKeluarga", "Riwayat Keluarga"),
-//            "Riwayat Sekarang" to sharedPreferences.getString("riwayatsekarang", "Riwayat Sekarang"),
-//            "Riwayat Pengobatan" to sharedPreferences.getString("riwayatpengobatan", "Riwayat Pengobatan")
-//        )
-//
-//        for ((key, value) in dataFields) {
-//            canvas.drawText("$key: $value", x, y, paint)
-//            y += 20f
-//        }
-
-        // Dimensi kertas PDF (A4)
         val pageWidth = 595
         val pageHeight = 935
-
         val pdfDocument = PdfDocument()
         val paint = Paint()
         val titlePaint = Paint()
@@ -393,7 +392,7 @@ class HasilSixMinute : AppCompatActivity() {
         startY += lineHeight
         paint.typeface = Typeface.DEFAULT
         val labelX = startX              // Posisi X untuk label
-        val valueX = startX + 100        // Posisi X untuk value (atur jaraknya sesuai kebutuhan)
+        val valueX = startX + 110        // Posisi X untuk value (atur jaraknya sesuai kebutuhan)
 
         pasienInfo.forEach { (label, value) ->
             // Gambar label di posisi labelX
@@ -427,70 +426,60 @@ class HasilSixMinute : AppCompatActivity() {
         startY += lineHeight // Geser untuk memulai data observasi
         paint.textSize = 12f
         paint.typeface = Typeface.DEFAULT
+        val jsonString = sharedRiwayat.getString("riwayat_pengobatan", null)
+        val riwayatPengobatanText = if (!jsonString.isNullOrEmpty()) {
+            val jsonArray = JSONArray(jsonString)
+            val stringBuilder = StringBuilder()
+
+            for (i in 0 until jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(i)
+                val obat = jsonObject.getString("obat")
+                val dosis = jsonObject.getString("dosis")
+
+                stringBuilder.append("Obat: $obat, Dosis: $dosis\n")
+            }
+
+            stringBuilder.toString()
+        } else {
+            "Tidak ada riwayat pengobatan"
+        }
 // Data Observasi (4 Data)
         val observasi = listOf(
             "Keluhan Saat ini" to sharedPreferences.getString("keluhan", "0"),
-            "Riwayat Keluarga" to sharedPreferences.getString("riwayatKeluarga", "0"),
-            "Riwayat Sekarang" to sharedPreferences.getString("riwayatsekarang", "0"),
-            "Riwayat Pengobatan" to sharedPreferences.getString("riwayatpengobatan", "0")
+            "Diagnosis" to sharedPreferences.getString("riwayatKeluarga", "0"),
+            "Jenis Tindakan" to sharedPreferences.getString("riwayatsekarang", "0"),
+            "Riwayat Pengobatan" to riwayatPengobatanText
         )
 
-// Hitung Kolom
-        val column1 = observasi.take(2) // Kolom 1
-        val column2 = observasi.drop(2) // Kolom 2
-        val columnWidth = 250f
-        val rowHeight = lineHeight
-        val tableStartY = startY // Awal tabel
-        val totalRows = 2
-        val tableHeight = totalRows * rowHeight
+        paint.typeface = Typeface.DEFAULT
+        val labelX1 = startX              // Posisi X untuk label
 
-// Hitung Tinggi Border
-        val totalHeight = (titleY - tableStartY) + tableHeight + lineHeight
+        val maxLabelWidth = 120f  // Maksimum lebar label
+        val maxTextWidth = 380f   // Maksimum lebar untuk value agar tidak keluar batas kanan
 
-// Posisi Kolom 2
-        val column2X = startX + columnWidth + 20f
+        observasi.forEach { (label, value) ->
+            val labelWidth = paint.measureText(label) // Ukur lebar label
+            val adjustedValueX = labelX1 + maxLabelWidth // Posisi sejajar untuk value
+            val colonX = labelX1 + labelWidth + 10 // Posisi ":" dengan jarak 10px dari label
 
-// Gambar Border Luar untuk Menutupi Judul dan Kedua Kolom
-        val tableEndX = column2X + columnWidth
-        canvas.drawRect(
-            startX,
-            titleY - 14f, // Tambahkan sedikit padding di atas judul
-            tableEndX,
-            tableStartY + tableHeight + 5f, // Tambahkan padding bawah
-            borderPaint
-        )
+            // Gambar label
+            canvas.drawText(label, labelX1, startY, paint)
 
-// Gambar Data Kolom 1
-        var currentY = tableStartY
-        column1.forEach { (label, value) ->
-            canvas.drawText(label, startX + 10f, currentY, paint)
-            canvas.drawText(": $value", startX + columnWidth / 2, currentY, paint)
-            currentY += rowHeight
+
+            // Pisahkan teks value agar tidak melebihi batas kanan
+            val valueText = value ?: ""
+            var start = 0
+            val textLength = valueText.length
+
+            while (start < textLength) {
+                val count = paint.breakText(valueText, start, textLength, true, maxTextWidth, null)
+                canvas.drawText(" : "+valueText.substring(start, start + count), adjustedValueX, startY, paint)
+                start += count
+                startY += lineHeight // Pindah ke baris berikutnya jika teks panjang
+            }
+            startY += lineHeight
         }
 
-// Gambar Data Kolom 2
-        currentY = tableStartY
-        column2.forEach { (label, value) ->
-            canvas.drawText(label, column2X + 5f, currentY, paint)
-            canvas.drawText(": $value", (column2X + columnWidth / 2)+ 30f, currentY, paint)
-            currentY += rowHeight
-        }
-
-
-// Reset paint ke mode default
-        paint.style = Paint.Style.FILL
-        paint.strokeWidth = 0f
-
-// Six Minute
-        borderPaint.style = Paint.Style.STROKE
-        borderPaint.color = Color.BLACK
-        borderPaint.strokeWidth = 2f
-
-// Data Observasi dalam 2 Kolom dengan Border Luar
-        startY += 70f
-        paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-        paint.textSize = 14f
-        paint.color = Color.BLACK
 
 // Judul Data Observation
         val respon = sharedPreferences.getString("respon",null)
@@ -498,8 +487,9 @@ class HasilSixMinute : AppCompatActivity() {
         paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
         paint.textSize = 14f
         paint.color = Color.BLACK
-        if (respon != null) {
-            canvas.drawText("Treadmill Test Metode", 220f, startY, paint)
+        val metode = sharedPreferences.getString("metode","0")
+        if(metode.toString() != "Six Minute Walking Test" ){
+            canvas.drawText(metode.toString(), 220f, startY, paint)
         }else{
             canvas.drawText("Six Minute Walking Test", 220f, startY, paint)
         }
@@ -516,11 +506,11 @@ class HasilSixMinute : AppCompatActivity() {
             "Jarak Tempuh" to sharedPreferences.getString("jaraktempuh", "0"),
             "TD Maksimal" to sharedPreferences.getString("tdmaksimal", "0"),
             "HR Maksimal" to sharedPreferences.getString("hrmaksimal", "0"),
-            "Kapasitas Aerobic" to sharedPreferences.getString("kapasitasaerobic", "0"),
-            "Threshold Iskemik Menit Ke " to sharedPreferences.getString("thresholdiskemik", "0")
         ).toMutableList()
 
         if (respon != null) {
+            sixminute.add("Kapasitas Aerobic" to sharedPreferences.getString("kapasitasaerobic", "0"))
+            sixminute.add("Threshold Iskemik Menit Ke " to sharedPreferences.getString("thresholdiskemik", "0"))
             sixminute.add("Respon Iskemik" to respon)
         }
 
@@ -659,25 +649,37 @@ class HasilSixMinute : AppCompatActivity() {
         paint.textSize = 14f
         paint.color = Color.BLACK
 
-// Judul Data
-        val titlehrm = startY // Simpan posisi judul
+
+//        pdfDocument.finishPage(pageInfo)
+        pdfDocument.finishPage(page)
+// Menambahkan halaman kedua
+        val pageInfo2 = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 2).create()
+        val page2 = pdfDocument.startPage(pageInfo2)
+        val canvas2: Canvas = page2.canvas
+        var startY2 = 10f
+        startY2 += 1f // Geser untuk memulai data observasi
+        paint.textSize = 12f
+        paint.typeface = Typeface.DEFAULT
+
+        // Judul Data
+        val titlehrm = startY2 // Simpan posisi judul
 //        paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
 //        paint.textSize = 14f
 //        paint.color = Color.BLACK
-//        canvas.drawText("Six Minute Walking Test", 220f, startY, paint)
-        startY += lineHeight // Geser untuk memulai data observasi
+//        canvas.drawText("Six Minute Walking Test", 220f, startY2, paint)
+        startY2 += lineHeight // Geser untuk memulai data observasi
         paint.textSize = 12f
         paint.typeface = Typeface.DEFAULT
 // Data Observasi (4 Data)
         val hrm = listOf(
-            "HRM BB" to sharedPreferences.getString("hrmBB", "0"),
-            "HRR " to sharedPreferences.getString("hrr", "0"),
+            "HRM Dengan umur" to sharedPreferences.getString("hrmBB", "0"),
+            "HRR Dengan Umur" to sharedPreferences.getString("hrr", "0"),
             "20 " to sharedPreferences.getString("hrr20", "0"),
             "40 " to sharedPreferences.getString("hrr40", "0"),
             "60 " to sharedPreferences.getString("hrr60", "0"),
             "80 " to sharedPreferences.getString("hrr80", "0"),
-            "HRM Tanpa BB" to sharedPreferences.getString("hrmtanpaBB", "0"),
-            "HRR " to sharedPreferences.getString("hrrtanpa", "0"),
+            "HRM Tanpa Umur" to sharedPreferences.getString("hrmtanpaBB", "0"),
+            "HRR Tanpa Umur" to sharedPreferences.getString("hrrtanpa", "0"),
             "20 " to sharedPreferences.getString("hrr20tanpa", "0"),
             "40 " to sharedPreferences.getString("hrr40tanpa", "0"),
             "60 " to sharedPreferences.getString("hrr60tanpa", "0"),
@@ -689,7 +691,7 @@ class HasilSixMinute : AppCompatActivity() {
         val column2hrm = hrm.drop(6) // Kolom 2
         val columnWidthhrm = 250f
         val rowHeighthrm = lineHeight
-        val tableStartYhrm = startY // Awal tabel
+        val tableStartYhrm = startY2 // Awal tabel
         val totalRowshrm = 2
         val tableHeighthrm = totalRowshrm * rowHeighthrm
 
@@ -701,7 +703,7 @@ class HasilSixMinute : AppCompatActivity() {
 
 // Gambar Border Luar untuk Menutupi Judul dan Kedua Kolom
         val tableEndXhrm = column2Xhrm + columnWidthhrm
-        canvas.drawRect(
+        canvas2.drawRect(
             startX,
             titlehrm , // Tambahkan sedikit padding di atas judul
             tableEndXhrm,
@@ -712,16 +714,16 @@ class HasilSixMinute : AppCompatActivity() {
 // Gambar Data Kolom 1
         var currentYhrm = tableStartYhrm
         column1hrm.forEach { (label, value) ->
-            canvas.drawText(label, startX + 10f, currentYhrm, paint)
-            canvas.drawText(": $value", startX + columnWidthhrm / 2, currentYhrm, paint)
+            canvas2.drawText(label, startX + 10f, currentYhrm, paint)
+            canvas2.drawText(": $value", startX + columnWidthhrm / 2, currentYhrm, paint)
             currentYhrm+= rowHeighthrm
         }
 
 // Gambar Data Kolom 2
         currentYhrm = tableStartYhrm
         column2hrm.forEach { (label, value) ->
-            canvas.drawText(label, column2Xhrm + 5f, currentYhrm, paint)
-            canvas.drawText(": $value", (column2Xhrm + columnWidthhrm / 2) + 30f, currentYhrm, paint)
+            canvas2.drawText(label, column2Xhrm + 5f, currentYhrm, paint)
+            canvas2.drawText(": $value", (column2Xhrm + columnWidthhrm / 2) + 30f, currentYhrm, paint)
             currentYhrm += rowHeighthrm
         }
 
@@ -738,17 +740,17 @@ class HasilSixMinute : AppCompatActivity() {
         borderPaint.strokeWidth = 2f
 
 // Data Observasi dalam 2 Kolom dengan Border Luar
-        startY += 125f
+        startY2 += 130f
         paint.textSize = 12f
         paint.color = Color.BLACK
 
 // Judul Data
-        val titlehasilrehab = startY // Simpan posisi judul
+        val titlehasilrehab = startY2 // Simpan posisi judul
         paint.textSize = 12f
         paint.color = Color.BLACK
-        canvas.drawText("Hasil Rehab", startX+10f, startY, paint)
-        canvas.drawText("Target METs Exercise (% Reserved METs)", 280f, startY, paint)
-        startY += lineHeight // Geser untuk memulai data observasi
+        canvas2.drawText("Hasil Rehab", startX+10f, startY2, paint)
+        canvas2.drawText("Target METs Exercise (% Reserved METs)", 280f, startY2, paint)
+        startY2 += lineHeight // Geser untuk memulai data observasi
         val paintBackground20 = Paint().apply {
             color = Color.YELLOW // Warna background
             style = Paint.Style.FILL // Mengisi warna pada persegi
@@ -767,41 +769,43 @@ class HasilSixMinute : AppCompatActivity() {
         val textHeight = paint.textSize // Tinggi teks dari Paint yang digunakan
         // Gambar background di belakang teks "20%"
         val textWidth20 = paint.measureText("20%")
-        canvas.drawRect(
+        canvas2.drawRect(
             280f - textPadding,
-            startY - textHeight - textPadding +10f,
+            startY2 - textHeight - textPadding +10f,
             280f + textWidth20 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground20
         )
-        canvas.drawText("20%", 280f, startY+5f, paint)
-        canvas.drawRect(
+        canvas2.drawText("20%", 280f, startY2+5f, paint)
+
+//        border hasil rehab
+        canvas2.drawRect(
             startX,
-            665f , // Tambahkan sedikit padding di atas judul
+            139f , // Tambahkan sedikit padding di atas judul
             570f,
-            795f , // Tambahkan padding bawah
+            276f , // Tambahkan padding bawah
             borderPaint
         )
         val textWidth40 = paint.measureText("40%")
-        canvas.drawRect(
+        canvas2.drawRect(
             380f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             380f + textWidth40 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground40
         )
-        canvas.drawText("40%", 380f, startY+5f, paint)
+        canvas2.drawText("40%", 380f, startY2+5f, paint)
         // Gambar background di belakang teks "60%"
         val textWidth60 = paint.measureText("60%")
-        canvas.drawRect(
+        canvas2.drawRect(
             480f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             480f + textWidth60 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground60
         )
-        canvas.drawText("60%", 480f, startY+5f, paint)
-        startY += lineHeight // Geser untuk memulai data observasi
+        canvas2.drawText("60%", 480f, startY2+5f, paint)
+        startY2 += lineHeight // Geser untuk memulai data observasi
 
 
 
@@ -811,34 +815,34 @@ class HasilSixMinute : AppCompatActivity() {
         val mets40 = sharedPreferences.getString("mest40", "0")
         val mets60 = sharedPreferences.getString("mest60", "0")
 
-        canvas.drawText("METS", startX+10f, startY, paint)
-            canvas.drawText(": $metshasil", 160f, startY, paint)
-        canvas.drawRect(
+        canvas2.drawText("METS", startX+10f, startY2, paint)
+        canvas2.drawText(": $metshasil", 160f, startY2, paint)
+        canvas2.drawRect(
             280f - textPadding,
-            startY - textHeight - textPadding +10f,
+            startY2 - textHeight - textPadding +10f,
             280f + textWidth20 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground20
         )
-        canvas.drawText(mets20.toString(), 280f, startY+5f, paint)
-        canvas.drawRect(
+        canvas2.drawText(mets20.toString(), 280f, startY2+5f, paint)
+        canvas2.drawRect(
             380f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             380f + textWidth40 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground40
         )
-        canvas.drawText(mets40.toString(), 380f, startY+5f, paint)
+        canvas2.drawText(mets40.toString(), 380f, startY2+5f, paint)
         // Gambar background di belakang teks "60%"
-        canvas.drawRect(
+        canvas2.drawRect(
             480f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             480f + textWidth60 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground60
         )
-        canvas.drawText(mets60.toString(), 480f, startY+5f, paint)
-        startY += lineHeight // Geser untuk memulai data observasi
+        canvas2.drawText(mets60.toString(), 480f, startY2+5f, paint)
+        startY2 += lineHeight // Geser untuk memulai data observasi
 
 //        Hasil VO2
         val vo2 = sharedPreferences.getString("vo2", "0")
@@ -846,35 +850,35 @@ class HasilSixMinute : AppCompatActivity() {
         val vo240 = sharedPreferences.getString("vo240", "0")
         val vo260 = sharedPreferences.getString("vo260", "0")
 
-        canvas.drawText("VO 2", startX+10f, startY, paint)
-        canvas.drawText(": $vo2", 160f, startY, paint)
-        canvas.drawRect(
+        canvas2.drawText("VO 2", startX+10f, startY2, paint)
+        canvas2.drawText(": $vo2", 160f, startY2, paint)
+        canvas2.drawRect(
             280f - textPadding,
-            startY - textHeight - textPadding +10f,
+            startY2 - textHeight - textPadding +10f,
             280f + textWidth20 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground20
         )
-        canvas.drawText(vo220.toString(), 280f, startY+5f, paint)
-        canvas.drawRect(
+        canvas2.drawText(vo220.toString(), 280f, startY2+5f, paint)
+        canvas2.drawRect(
             380f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             380f + textWidth40 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground40
         )
-        canvas.drawText(vo240.toString(), 380f, startY+5f, paint)
+        canvas2.drawText(vo240.toString(), 380f, startY2+5f, paint)
         // Gambar background di belakang teks "60%"
-        canvas.drawRect(
+        canvas2.drawRect(
             480f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             480f + textWidth60 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground60
         )
-        canvas.drawText(vo260.toString(), 480f, startY+5f, paint)
+        canvas2.drawText(vo260.toString(), 480f, startY2+5f, paint)
 
-        startY += lineHeight // Geser untuk memulai data observasi
+        startY2 += lineHeight // Geser untuk memulai data observasi
 
         //        Hasil Speed
         val speed = sharedPreferences.getString("speed", "0")
@@ -882,35 +886,35 @@ class HasilSixMinute : AppCompatActivity() {
         val speed40 = sharedPreferences.getString("speed40", "0")
         val speed60 = sharedPreferences.getString("speed20", "0")
 
-        canvas.drawText("Speed", startX+10f, startY, paint)
-        canvas.drawText(": $speed", 160f, startY, paint)
-        canvas.drawRect(
+        canvas2.drawText("Speed", startX+10f, startY2, paint)
+        canvas2.drawText(": $speed", 160f, startY2, paint)
+        canvas2.drawRect(
             280f - textPadding,
-            startY - textHeight - textPadding +10f,
+            startY2 - textHeight - textPadding +10f,
             280f + textWidth20 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground20
         )
-        canvas.drawText(speed20.toString(), 280f, startY+5f, paint)
-        canvas.drawRect(
+        canvas2.drawText(speed20.toString(), 280f, startY2+5f, paint)
+        canvas2.drawRect(
             380f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             380f + textWidth40 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground40
         )
-        canvas.drawText(speed40.toString(), 380f, startY+5f, paint)
+        canvas2.drawText(speed40.toString(), 380f, startY2+5f, paint)
         // Gambar background di belakang teks "60%"
-        canvas.drawRect(
+        canvas2.drawRect(
             480f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             480f + textWidth60 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground60
         )
-        canvas.drawText(speed60.toString(), 480f, startY+5f, paint)
+        canvas2.drawText(speed60.toString(), 480f, startY2+5f, paint)
 
-        startY += lineHeight // Geser untuk memulai data observasi
+        startY2 += lineHeight // Geser untuk memulai data observasi
 
         //        Hasil Speed
         val jarakberjalan = sharedPreferences.getString("jarakberjalan", "0")
@@ -918,73 +922,128 @@ class HasilSixMinute : AppCompatActivity() {
         val jarakberjalan40 = sharedPreferences.getString("jarakberjalan40", "0")
         val jarakberjalan60 = sharedPreferences.getString("jarakberjalan20", "0")
 
-        canvas.drawText("Jarak Berjalan", startX+10f, startY, paint)
-        canvas.drawText(": $jarakberjalan", 160f, startY, paint)
-        canvas.drawRect(
+        canvas2.drawText("Jarak Berjalan", startX+10f, startY2, paint)
+        canvas2.drawText(": $jarakberjalan", 160f, startY2, paint)
+        canvas2.drawRect(
             280f - textPadding,
-            startY - textHeight - textPadding +10f,
+            startY2 - textHeight - textPadding +10f,
             280f + textWidth20 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground20
         )
-        canvas.drawText(jarakberjalan20.toString(), 280f, startY+5f, paint)
-        canvas.drawRect(
+        canvas2.drawText(jarakberjalan20.toString(), 280f, startY2+5f, paint)
+        canvas2.drawRect(
             380f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             380f + textWidth40 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground40
         )
-        canvas.drawText(jarakberjalan40.toString(), 380f, startY+5f, paint)
+        canvas2.drawText(jarakberjalan40.toString(), 380f, startY2+5f, paint)
         // Gambar background di belakang teks "60%"
-        canvas.drawRect(
+        canvas2.drawRect(
             480f - textPadding,
-            startY - textHeight - textPadding+10f,
+            startY2 - textHeight - textPadding+10f,
             480f + textWidth60 + textPadding,
-            startY + textPadding,
+            startY2 + textPadding,
             paintBackground60
         )
-        canvas.drawText(jarakberjalan60.toString(), 480f, startY+5f, paint)
-
-        startY += lineHeight // Geser untuk memulai data observasi
-        paint.textSize = 12f
-        paint.typeface = Typeface.DEFAULT
+        canvas2.drawText(jarakberjalan60.toString(), 480f, startY2+5f, paint)
 
         paint.style = Paint.Style.FILL
         paint.strokeWidth = 0f
 
         // Program Latihan
-        startY += 10f
+        startY2 += 35f
         paint.typeface = Typeface.DEFAULT_BOLD
-        canvas.drawText("Conclusion :", startX, startY, paint)
-        paint.textSize = 12f
-        paint.typeface = Typeface.DEFAULT
-        startY += lineHeight
-        val conclusion = findViewById<EditText>(R.id.ed_kesimpulan)
-        canvas.drawText(conclusion.text.toString(), startX, startY, paint)
+        canvas2.drawText("Conclusion :", startX, startY2, paint)
+//        paint.textSize = 12f
+//        paint.typeface = Typeface.DEFAULT
+//        startY += lineHeight
+//        val conclusion = findViewById<EditText>(R.id.ed_kesimpulan)
+//        canvas.drawText(conclusion.text.toString(), startX, startY, paint)
+
+        // Tentukan lebar batas kanan (misal 200 pixel)
+        val maxWidth = 400f
+
+// Buat TextPaint
+        val textPaint = TextPaint()
+        textPaint.textSize = 12f
+        textPaint.typeface = Typeface.DEFAULT
+
+// Ambil teks dari EditText
+        val conclusionText = findViewById<EditText>(R.id.ed_kesimpulan).text.toString()
+
+// Gunakan StaticLayout untuk membatasi lebar teks
+        val staticLayout = StaticLayout.Builder
+            .obtain(conclusionText, 0, conclusionText.length, textPaint, maxWidth.toInt())
+            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+            .setLineSpacing(0f, 1f)
+            .setIncludePad(false)
+            .build()
+
+// Simpan posisi awal
+        canvas2.save()
+        canvas2.translate(startX, startY2)
+
+// Gambar teks ke canvas
+        staticLayout.draw(canvas2)
+
+// Kembalikan posisi canvas
+        canvas2.restore()
+
+// Update startY agar tidak bertumpuk
+        startY2 += staticLayout.height
+
         // Program Latihan
-        startY += lineHeight
-        startY += 10f
+        startY2 += 1f
+        startY2 += 10f
         paint.typeface = Typeface.DEFAULT_BOLD
-        canvas.drawText("Program Latihan :", startX, startY, paint)
+        canvas2.drawText("Program Latihan :", startX, startY2, paint)
 
-        paint.textSize = 12f
-        paint.typeface = Typeface.DEFAULT
-        startY += lineHeight
-        val program = findViewById<EditText>(R.id.ed_programlatihan)
-        canvas.drawText(program.text.toString(), startX, startY, paint)
+//        paint.textSize = 12f
+//        paint.typeface = Typeface.DEFAULT
+//        startY += lineHeight
+//        val program = findViewById<EditText>(R.id.ed_programlatihan)
+//        canvas2.drawText(program.text.toString(), startX, startY, paint)
 
+        textPaint.textSize = 12f
+        textPaint.typeface = Typeface.DEFAULT
+
+// Ambil teks dari EditText
+        val program = findViewById<EditText>(R.id.ed_programlatihan).text.toString()
+
+// Gunakan StaticLayout untuk membatasi lebar teks
+        val staticLayoutprogram = StaticLayout.Builder
+            .obtain(program, 0, conclusionText.length, textPaint, maxWidth.toInt())
+            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+            .setLineSpacing(0f, 1f)
+            .setIncludePad(false)
+            .build()
+
+// Simpan posisi awal
+        canvas2.save()
+        canvas2.translate(startX, startY2)
+
+// Gambar teks ke canvas
+        staticLayoutprogram.draw(canvas2)
+
+// Kembalikan posisi canvas
+        canvas2.restore()
+
+// Update startY agar tidak bertumpuk
+        startY2 += staticLayout.height
 
         // Physician
         paint.color = Color.BLACK
         paint.typeface = Typeface.DEFAULT_BOLD
-        canvas.drawText("Physician", 480f, startY, paint)
+        canvas2.drawText("Physician", 480f, startY2, paint)
         paint.typeface = Typeface.DEFAULT
         val dokter = sharedPreferences.getString("username", "0")
-        canvas.drawText(dokter.toString(), 480f, startY+20f, paint)
+        canvas2.drawText(dokter.toString(), 480f, startY2+20f, paint)
 
         // Selesaikan halaman dan tambahkan ke dokumen PDF
-        pdfDocument.finishPage(page)
+        pdfDocument.finishPage(page2)
         val nama_pasien = sharedPreferences.getString("namapasien","Nama Pasien")
         val currentTime = SimpleDateFormat("ss").format(Date()) // Format waktu hanya detik
         // Simpan PDF ke penyimpanan

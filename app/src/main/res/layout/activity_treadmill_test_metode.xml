@@ -50,6 +50,14 @@
                 android:text="Treadmill Test Metode"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/metode_test"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Treadmill Test Metode"
+                android:textSize="17sp"
+                android:textStyle="bold" />
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,38 +119,6 @@
                     android:layout_columnWeight="1"
                     android:text="Kg"/>
             </GridLayout>
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:layout_marginTop="15dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Nadi"
-                    android:textSize="16sp"
-                    android:layout_columnWeight="3"/>
-
-                <EditText
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:minHeight="48dp"
-                    android:layout_columnWeight="1"
-                    android:background="@drawable/input_background1"
-                    android:inputType="numberDecimal"
-                    android:paddingStart="8dp"
-                    android:focusableInTouchMode="true"
-                    android:id="@+id/ed_nadi"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="bpm"
-                    android:layout_marginLeft="5dp"
-                    android:layout_columnWeight="1"/>
-            </GridLayout>
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -193,6 +169,7 @@
                     android:paddingStart="8dp"
                     android:focusableInTouchMode="true"
                     android:background="@drawable/input_background1"
+                    android:inputType="numberDecimal"
                     android:id="@+id/ed_hristirahat"
                     android:layout_marginTop="5dp"/>
                 <TextView

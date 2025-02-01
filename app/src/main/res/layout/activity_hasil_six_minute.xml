@@ -2,6 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
     android:focusableInTouchMode="true">
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +37,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:paddingRight="30dp"
                 android:paddingLeft="30dp"
                 android:background="#F5F7FB"
@@ -61,7 +62,7 @@
                     android:orientation="vertical">
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -87,7 +88,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -113,7 +114,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -139,7 +140,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -165,7 +166,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -191,7 +192,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -217,7 +218,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -243,7 +244,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -283,7 +284,7 @@
                         android:gravity="center"/>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -309,14 +310,14 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Riwayat Keluarga"
+                            android:text="Diagnosis"
                             android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <TextView
@@ -335,14 +336,14 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Riwayat Saat Ini"
+                            android:text="Jenis Tindakan"
                             android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <TextView
@@ -361,7 +362,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="3"
                         >
@@ -551,6 +552,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="Kapasitas Aerobic"
+                            android:id="@+id/tv_kapasitasaerobic"
                             android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <EditText
@@ -566,6 +568,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/satuankapasitasaerobic"
                             android:text="METs"
                             android:layout_columnWeight="1"/>
                     </GridLayout>
@@ -605,6 +608,7 @@
                             android:layout_height="wrap_content"
                             android:text="Threshold Iskemik Menit Ke"
                             android:layout_columnWeight="3"
+                            android:id="@+id/tv_threshold"
                             android:textSize="15sp"/>
                         <EditText
                             android:layout_width="60dp"
@@ -619,6 +623,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/saturanThreshold"
                             android:text="METs"
                             android:layout_columnWeight="1"/>
                     </GridLayout>
@@ -721,7 +726,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="6"
                         >
@@ -766,7 +771,7 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="6"
                         >
@@ -793,21 +798,21 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="Cairan Normal"
-                            android:layout_columnWeight="5"
+                            android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
                             android:textAlignment="textEnd"
-                            android:layout_columnWeight="0"/>
+                            android:layout_columnWeight="1"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="nilai"
                             android:id="@+id/nilaicairannormal"
-                            android:layout_columnWeight="3"/>
+                            android:layout_columnWeight="4"/>
                     </GridLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -818,14 +823,14 @@
                     android:orientation="vertical">
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="6"
                         >
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="HRM BB"
+                            android:text="HRM Umur"
                             android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <TextView
@@ -844,7 +849,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="HRM Tanpa BB"
+                            android:text="HRM Tanpa Umur"
                             android:layout_columnWeight="5"
                             android:textSize="15sp"/>
                         <TextView
@@ -863,14 +868,14 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="6"
                         >
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="HRR"
+                            android:text="HRR Umur"
                             android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <TextView
@@ -889,7 +894,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="HRR"
+                            android:text="HRR Tanpa Umur"
                             android:layout_columnWeight="5"
                             android:textSize="15sp"/>
                         <TextView
@@ -908,14 +913,14 @@
                     </GridLayout>
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:columnCount="6"
                         >
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="20"
+                            android:text="20 %"
                             android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <TextView
@@ -934,7 +939,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="20"
+                            android:text="20 %"
                             android:layout_columnWeight="5"
                             android:textSize="15sp"/>
                         <TextView
@@ -960,7 +965,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="40"
+                            android:text="40 %"
                             android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <TextView
@@ -979,7 +984,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="40"
+                            android:text="40 %"
                             android:layout_columnWeight="5"
                             android:textSize="15sp"/>
                         <TextView
@@ -1005,7 +1010,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="60"
+                            android:text="60 %"
                             android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <TextView
@@ -1024,7 +1029,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="60"
+                            android:text="60 %"
                             android:layout_columnWeight="5"
                             android:textSize="15sp"/>
                         <TextView
@@ -1050,7 +1055,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="80"
+                            android:text="80 %"
                             android:layout_columnWeight="3"
                             android:textSize="15sp"/>
                         <TextView
@@ -1069,7 +1074,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="80"
+                            android:text="80 %"
                             android:layout_columnWeight="5"
                             android:textSize="15sp"/>
                         <TextView
@@ -1381,6 +1386,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:minHeight="100dp"
+                        android:focusableInTouchMode="true"
                         android:id="@+id/ed_kesimpulan"
                         android:inputType="textMultiLine"
                         android:background="@drawable/input_background1"
@@ -1402,6 +1408,7 @@
                         android:textSize="20sp"
                         android:minHeight="100dp"
                         android:id="@+id/ed_programlatihan"
+                        android:focusableInTouchMode="true"
                         android:inputType="textMultiLine"
                         android:background="@drawable/input_background1"
                         android:paddingStart="8dp"
@@ -1412,6 +1419,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btn_kembali"
+                        android:backgroundTint="#D51F1F"
+                        android:layout_weight="1"
+                        android:text="Reset" />
                     <View
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

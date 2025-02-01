@@ -112,37 +112,7 @@
                     android:text="Kg"/>
             </GridLayout>
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:layout_marginTop="15dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Nadi"
-                    android:textSize="16sp"
-                    android:layout_columnWeight="3"/>
 
-                <EditText
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:minHeight="48dp"
-                    android:layout_columnWeight="1"
-                    android:background="@drawable/input_background1"
-                    android:inputType="numberDecimal"
-                    android:paddingStart="8dp"
-                    android:focusableInTouchMode="true"
-                    android:id="@+id/ed_nadi"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="bpm"
-                    android:layout_marginLeft="5dp"
-                    android:layout_columnWeight="1"/>
-            </GridLayout>
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -193,6 +163,7 @@
                     android:focusableInTouchMode="true"
                     android:background="@drawable/input_background1"
                     android:id="@+id/ed_hristirahat"
+                    android:inputType="numberDecimal"
                     android:paddingStart="8dp"
                     android:layout_marginTop="5dp"/>
                 <TextView
@@ -222,6 +193,7 @@
                     android:focusableInTouchMode="true"
                     android:background="@drawable/input_background1"
                     android:inputType="numberDecimal"
+                    android:paddingStart="8dp"
                     android:layout_columnWeight="1"
                     android:layout_marginTop="5dp"/>
                 <TextView
@@ -289,66 +261,6 @@
                     android:layout_marginLeft="5dp"
                     android:text="x/Menit"/>
             </GridLayout>
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:layout_marginTop="15dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_columnWeight="3"
-                    android:text="Kapasitas Aerobic"/>
-                <EditText
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:textSize="20sp"
-                    android:minHeight="48dp"
-                    android:focusableInTouchMode="true"
-                    android:background="@drawable/input_background1"
-                    android:inputType="numberDecimal"
-                    android:id="@+id/ed_kapasitasaerobic"
-                    android:paddingStart="8dp"
-                    android:layout_marginTop="5dp"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_marginLeft="5dp"
-                    android:text="METs"/>
-            </GridLayout>
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:layout_marginTop="15dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_columnWeight="3"
-                    android:text="Threshold Iskemik Menit Ke"/>
-                <EditText
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:textSize="20sp"
-                    android:minHeight="48dp"
-                    android:focusableInTouchMode="true"
-                    android:background="@drawable/input_background1"
-                    android:inputType="numberDecimal"
-                    android:id="@+id/ed_thresholdiskemik"
-                    android:paddingStart="8dp"
-                    android:layout_marginTop="5dp"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_marginLeft="5dp"/>
-
-            </GridLayout>
             <!-- Formulir -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -372,7 +284,13 @@
                     android:id="@+id/btn_selanjutnya"
                     android:layout_weight="1"
                     android:text="Selanjutnya" />
+
+
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ujicoba"/>
         </LinearLayout>
         </LinearLayout>
 </ScrollView>
